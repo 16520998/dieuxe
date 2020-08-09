@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Hoc tap\\KLTN\\source\\dieuxe\\dieuxe\\dieuxe\\dieuxe.csproj": {}
+    "D:\\hoctap\\kltn\\source\\dieuxe\\dieuxe\\dieuxe\\dieuxe\\dieuxe.csproj": {}
   },
   "projects": {
-    "D:\\Hoc tap\\KLTN\\source\\dieuxe\\dieuxe\\dieuxe\\dieuxe.csproj": {
+    "D:\\hoctap\\kltn\\source\\dieuxe\\dieuxe\\dieuxe\\dieuxe\\dieuxe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Hoc tap\\KLTN\\source\\dieuxe\\dieuxe\\dieuxe\\dieuxe.csproj",
+        "projectUniqueName": "D:\\hoctap\\kltn\\source\\dieuxe\\dieuxe\\dieuxe\\dieuxe\\dieuxe.csproj",
         "projectName": "dieuxe",
-        "projectPath": "D:\\Hoc tap\\KLTN\\source\\dieuxe\\dieuxe\\dieuxe\\dieuxe.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\Hoc tap\\KLTN\\source\\dieuxe\\dieuxe\\dieuxe\\obj\\",
+        "projectPath": "D:\\hoctap\\kltn\\source\\dieuxe\\dieuxe\\dieuxe\\dieuxe\\dieuxe.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\hoctap\\kltn\\source\\dieuxe\\dieuxe\\dieuxe\\dieuxe\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -46,10 +47,6 @@
               "target": "Package",
               "version": "[4.7.0, )"
             },
-            "MvvmLightLibs": {
-              "target": "Package",
-              "version": "[5.4.1.1, )"
-            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
@@ -59,6 +56,22 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[12.0.3, )"
+            },
+            "Plugin.Permissions": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "System.Reactive": {
+              "target": "Package",
+              "version": "[4.4.1, )"
+            },
+            "Xam.Plugin.Geolocator": {
+              "target": "Package",
+              "version": "[4.5.0.6, )"
+            },
+            "Xam.Plugins.Messaging": {
+              "target": "Package",
+              "version": "[5.2.0, )"
             },
             "Xam.Plugins.Settings": {
               "target": "Package",

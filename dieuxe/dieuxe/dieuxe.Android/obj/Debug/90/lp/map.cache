@@ -1,5 +1,7 @@
 FormsViewGroup
-GalaSoft.MvvmLight.Platform
+Plugin.Geolocator
+Plugin.Messaging
+Plugin.Permissions
 Plugin.Settings
 Xamarin.Android.Arch.Core.Common
 Xamarin.Android.Arch.Core.Runtime

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Trang cá nhân"
+             x:Class="dieuxe.Views.profile">
+    <!--<ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
+                <Label Margin="0,0,0,10" FontAttributes="Bold" FontSize="Large" TextColor="#CA6F1E" HorizontalTextAlignment="Center" Text="SMS"></Label>
+                <Entry x:Name="txtNumber" Placeholder="Enter Number"></Entry>
+                <Entry x:Name="txtMessage" Placeholder="Type something here..."></Entry>
+                <Button x:Name="btnSms" Text="Send SMS" Clicked="Sendsms_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+        
+        
+        
+        
+    </ContentPage.Content>-->
+    <ContentPage.Content>
+      
+        <AbsoluteLayout Margin="0,0,0,0" >
+            <Image  Source="image.jpg" WidthRequest="1"   AbsoluteLayout.LayoutBounds="1,1,1,1.2"  AbsoluteLayout.LayoutFlags="All" />
+
+            
+            <StackLayout AbsoluteLayout.LayoutBounds="1,1,1,0.3" AbsoluteLayout.LayoutFlags="All"  BackgroundColor="AliceBlue"   />
+
+            <Frame AbsoluteLayout.LayoutBounds="0,1,1,0.5" AbsoluteLayout.LayoutFlags="All" CornerRadius="50" BackgroundColor="AliceBlue"  Style="{StaticResource stlMainFrame}" >
+                
+                <Grid Padding="25,10,25,0" RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                  
+                    
+                    <Label x:Name="ten" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  TextColor="Black" Opacity="0.7" FontAttributes="Bold" FontSize="25"/>
+                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Công ty PPJ" TextColor="Black" Opacity="0.7" FontSize="16"/>
+                    <Label Grid.Row="2" Grid.Column="0"  Style="{StaticResource labelStyle}" Grid.ColumnSpan="3" Padding="0,10,0,0" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Email: " FontAttributes="Bold" />
+                                <Span x:Name="email"  />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label Grid.Row="3" Grid.Column="0" Text="Bộ phận" Opacity="0.7" TextColor="Black" Style="{StaticResource  stlBoardDesc }" />
+                    <Label Grid.Row="4" Grid.Column="0" Text="Nhân sự"  Opacity="0.7" TextColor="Black" Style="{StaticResource stlBoardTitle}"/>
+
+                    <Label Grid.Row="3" Grid.Column="1" Text="Số điện thoại" Opacity="0.7" TextColor="Black" Style="{StaticResource stlBoardDesc }"/>
+                    <Label x:Name="sdt" Grid.Row="4" Grid.Column="1" Text="0394362145" Opacity="0.7" TextColor="Black" Style="{StaticResource stlBoardTitle}"/>
+
+                    <Label Grid.Row="3" Grid.Column="2" Text="Chức vụ" Opacity="0.7" TextColor="Black" Style="{StaticResource stlBoardDesc }"/>
+                    <Label x:Name="chucvu" Grid.Row="4" Grid.Column="2" Text="Nhân viên"  Opacity="0.7" TextColor="Black" Style="{StaticResource stlBoardTitle}"/>
+                
+                </Grid>
+            </Frame>
+              
+            </AbsoluteLayout>
+   
+    </ContentPage.Content>
+</ContentPage>

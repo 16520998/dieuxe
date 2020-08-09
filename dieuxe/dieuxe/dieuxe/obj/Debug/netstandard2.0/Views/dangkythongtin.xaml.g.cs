@@ -17,13 +17,25 @@ namespace dieuxe.Views {
     public partial class dangkythongtin : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Label username;
+        private global::Xamarin.Forms.StackLayout content;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::dieuxe.CustomControl.CustomEntry noidon;
+        private global::dieuxe.CustomControl.BorderlessEntry tennguoidi;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::dieuxe.CustomControl.CustomEntry noiden;
+        private global::dieuxe.CustomControl.BorderlessEntry songuoi;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::dieuxe.CustomControl.BorderlessEntry noidi;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.ImageButton mapdi;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::dieuxe.CustomControl.BorderlessEntry noiden;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.ImageButton mapden;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::dieuxe.CustomControl.CustomDatePicker ngayden;
@@ -38,19 +50,51 @@ namespace dieuxe.Views {
         private global::dieuxe.CustomControl.CustomTimePicker giove;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::dieuxe.CustomControl.CustomEntry songuoi;
+        private global::dieuxe.CustomControl.BorderlessEntry sdt;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Frame listdi;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.ListView listkq;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Frame listden;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.ListView listkq1;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::dieuxe.CustomControl.BorderlessEntry ghichu;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::dieuxe.CustomControl.GradientButton dk;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::dieuxe.CustomControl.GradientButton sua;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(dangkythongtin));
-            username = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "username");
-            noidon = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.CustomEntry>(this, "noidon");
-            noiden = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.CustomEntry>(this, "noiden");
+            content = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "content");
+            tennguoidi = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.BorderlessEntry>(this, "tennguoidi");
+            songuoi = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.BorderlessEntry>(this, "songuoi");
+            noidi = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.BorderlessEntry>(this, "noidi");
+            mapdi = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ImageButton>(this, "mapdi");
+            noiden = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.BorderlessEntry>(this, "noiden");
+            mapden = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ImageButton>(this, "mapden");
             ngayden = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.CustomDatePicker>(this, "ngayden");
             gioden = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.CustomTimePicker>(this, "gioden");
             ngayve = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.CustomDatePicker>(this, "ngayve");
             giove = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.CustomTimePicker>(this, "giove");
-            songuoi = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.CustomEntry>(this, "songuoi");
+            sdt = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.BorderlessEntry>(this, "sdt");
+            listdi = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Frame>(this, "listdi");
+            listkq = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "listkq");
+            listden = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Frame>(this, "listden");
+            listkq1 = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "listkq1");
+            ghichu = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.BorderlessEntry>(this, "ghichu");
+            dk = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.GradientButton>(this, "dk");
+            sua = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.GradientButton>(this, "sua");
         }
     }
 }

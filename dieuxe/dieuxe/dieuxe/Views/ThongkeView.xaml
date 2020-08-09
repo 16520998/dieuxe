@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="clr-namespace:dieuxe.CustomControl"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="trangthongke"
+             x:Class="dieuxe.Views.ThongkeView">
+    <ContentPage.Content >
+        <ScrollView>
+        <StackLayout  x:Name="stackLayout">
+            <!--<Label Text="không có thông báo mới!" IsVisible="False" TextColor="Black" Opacity="0.7"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />-->
+            <!--<Button Text="Create Notification"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            Clicked="OnScheduleClick" />-->
+            <Label Margin="15,50,0,30"  x:Name="t" Text="Thống kê tháng này" FontSize="Large" TextColor="Black" Opacity="0.7"/>
+            <!--<Button x:Name="tc" Text="Xem tháng trước" Clicked=""-->
+            <StackLayout Orientation="Horizontal">
+                    <control:GradientButton Text="Xem thống kê theo năm" WidthRequest="100" StartColor="#0cebeb"
+                                            EndColor="#20e3b2" 
+                                            TextColor="White" Padding="5" Margin="15,0,0,10"
+                                            BorderRadius="3" x:Name="x" Clicked="xemtongclicked" >
+                        <control:GradientButton.Triggers>
+                            <!--thong ke thang-->
+                            <DataTrigger TargetType="control:GradientButton" Binding="{Binding ThongKeNam}" Value="true">
+                                <Setter Property="Text" Value="Xem thống kê theo tháng"/>
+                            </DataTrigger>
+                            <!--thong ke nam-->
+                            <DataTrigger TargetType="control:GradientButton" Binding="{Binding ThongKeNam}" Value="false">
+                                <Setter Property="Text" Value="Xem thống kê theo năm"/>
+                            </DataTrigger>
+                        </control:GradientButton.Triggers>
+                    </control:GradientButton>
+                    <Label  Padding="10,10,10,15" Text="Tháng" Style="{StaticResource labelStyle}">
+                        <Label.Triggers>
+                            <!--thong ke thang-->
+                            <DataTrigger TargetType="Label" Binding="{Binding ThongKeNam}" Value="false">
+                                <Setter Property="IsVisible" Value="True"/>
+                            </DataTrigger>
+                            <!--thong ke nam-->
+                            <DataTrigger TargetType="Label" Binding="{Binding ThongKeNam}" Value="true">
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Picker x:Name="chonthang" WidthRequest="30" SelectedIndexChanged="chonthang_SelectedIndexChanged" >
+
+                        <Picker.Triggers>
+                            <!--thong ke thang-->
+                            <DataTrigger TargetType="Picker" Binding="{Binding ThongKeNam}" Value="false">
+                                <Setter Property="IsVisible" Value="True"/>
+                            </DataTrigger>
+                            <!--thong ke nam-->
+                            <DataTrigger TargetType="Picker" Binding="{Binding ThongKeNam}" Value="true">
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </Picker.Triggers>
+                    </Picker>
+                
+                <Label Padding="15,10,0,10" Style="{StaticResource labelStyle}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Năm "/>
+                            <Span x:Name="nam" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                        <Label.Triggers>
+                            <!--thong ke thang-->
+                            <DataTrigger TargetType="Label" Binding="{Binding ThongKeNam}" Value="false">
+                                <Setter Property="IsVisible" Value="True"/>
+                            </DataTrigger>
+                            <!--thong ke nam-->
+                            <DataTrigger TargetType="Label" Binding="{Binding ThongKeNam}" Value="true">
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                   
+                </StackLayout>
+            <Label x:Name="lb" IsVisible="False" Text="không có thống kê tháng này!" TextColor="Black" Opacity="0.5" VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" >
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding check }" BindingContext="{x:Reference trangthongke }" Value="False">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Frame CornerRadius="15" Margin="15,0,15,0">
+            <Grid Padding="0"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.1*"/>
+                    <ColumnDefinition Width="0.9*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Row="0" Padding="0"  Grid.Column="0" Orientation="Horizontal" >
+                    <Image Source="car" HeightRequest="25"/>
+                    <Label Text="Biển Số Xe" Style="{StaticResource labelStyle}" FontSize="15" Padding="0,10"/>
+                </StackLayout>
+                <StackLayout Padding="8,0,0,0"  Grid.Row="0" Grid.Column="1" Orientation="Horizontal" >
+                    <Image Source="corona" HeightRequest="25"/>
+                    <Label Text="Số người đi" Style="{StaticResource labelStyle}" Padding="0,10"/>
+                </StackLayout>
+                <StackLayout Padding="5,0,0,0" Grid.Row="0" Grid.Column="2" Orientation="Horizontal" >
+                    <Image Source="usd" HeightRequest="25"/>
+                    <Label Text="Chi phí" Style="{StaticResource labelStyle}" Padding="0,10"/>
+                </StackLayout>
+                
+                <!--list thống kê-->
+                
+                    <ListView  Grid.ColumnSpan="3" Grid.Row="1" HeightRequest="180"
+                      x:Name="listhongke"  RowHeight="60"
+                       SeparatorVisibility="None" >
+                            <!--ItemsSource="{Binding Thanghientai}"-->
+                            <ListView.Triggers>
+                                <!--thong ke thang-->
+                                <DataTrigger TargetType="ListView" Binding="{Binding ThongKeNam}" Value="false">
+                                    <Setter Property="ItemsSource" Value="{Binding Thanghientai}"/>
+                                </DataTrigger>
+                                <!--thong ke thang-->
+                                <DataTrigger TargetType="ListView" Binding="{Binding ThongKeNam}" Value="true">
+                                    <Setter Property="ItemsSource" Value="{Binding ThongkeCuoiNam}"/>
+                                </DataTrigger>
+                            </ListView.Triggers>
+                           
+                            <!--IsPullToRefreshEnabled="True"-->
+                            <!--RefreshCommand="{Binding refreshCommand}"-->
+                            <!--IsRefreshing="{Binding isRefresh}"-->
+                            <!--HasUnevenRows="True"-->
+                            <!--ItemsSource="{Binding ThongkeCuoiThang}"-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                
+                                    <!--<Frame CornerRadius="15" WidthRequest="370" Margin="20,7,20,0" Padding="0" HeightRequest="70">-->
+                                    <Grid Padding="0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label HorizontalOptions="StartAndExpand" Padding="25,0,0,0" Text="{Binding BienKiemSoat}" Grid.Row="0" Grid.Column="0" Style="{StaticResource labelStyle}"/>
+                                    <Label HorizontalOptions="Center" Padding="10,0,0,0"  Text="{Binding TongNguoiDiTrongThang}" Grid.Row="0" Grid.Column="1" Style="{StaticResource labelStyle}"/>
+                                    <Label HorizontalOptions="Start" Padding="20,0,0,0"   Text="{Binding TongChiPhi}" Grid.Row="0" Grid.Column="2" Style="{StaticResource labelStyle}"/>
+                                    </Grid>
+                                    <!--</Frame>-->
+                               
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            </Frame>
+
+            
+            <Label Padding="15,15,0,0" Style="{StaticResource labelStyle}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Tổng Chi phí : "  />
+                            <Span x:Name="tcp" Text="{Binding TongChiPhi}"  FontAttributes="Bold" />
+                    </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            <Label Padding="15,15,0,0" Style="{StaticResource labelStyle}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Tổng người đi : "/>
+                        <Span x:Name="tn" Text="{Binding TongNguoi}" FontAttributes="Bold"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

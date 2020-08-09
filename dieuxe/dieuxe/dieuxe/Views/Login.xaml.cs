@@ -1,7 +1,9 @@
-﻿using System;
+﻿using dieuxe.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -15,6 +17,9 @@ namespace dieuxe.Views
         public Login()
         {
             InitializeComponent();
+            this.BindingContext = new Login_ViewModels();
         }
+
+        
     }
 }

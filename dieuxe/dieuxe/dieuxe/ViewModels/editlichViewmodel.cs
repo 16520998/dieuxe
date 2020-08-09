@@ -42,7 +42,7 @@ namespace dieuxe.ViewModels
 
         }
 
-        public ICommand updateCommand
+        public ICommand SuaCommand
         {
             get
             {

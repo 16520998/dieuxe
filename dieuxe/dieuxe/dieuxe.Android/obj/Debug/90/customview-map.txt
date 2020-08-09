@@ -1,46 +1,46 @@
-@string/appbar_scrolling_view_behavior;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\flyoutcontent.xml
-@string/appbar_scrolling_view_behavior;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\rootlayout.xml
+@string/appbar_scrolling_view_behavior;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\flyoutcontent.xml
+@string/appbar_scrolling_view_behavior;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\rootlayout.xml
 adaptive-icon;obj\Debug\90\res\mipmap-anydpi-v26\icon.xml
 adaptive-icon;obj\Debug\90\res\mipmap-anydpi-v26\icon_round.xml
-alpha;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\anim\enterfromleft.xml
-alpha;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\anim\exittoleft.xml
-android.support.design.widget.AppBarLayout;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\flyoutcontent.xml
-android.support.design.widget.AppBarLayout;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\rootlayout.xml
-android.support.design.widget.AppBarLayout;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\shellcontent.xml
-android.support.design.widget.BottomNavigationView;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\bottomtablayout.xml
-android.support.design.widget.CoordinatorLayout;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\flyoutcontent.xml
-android.support.design.widget.CoordinatorLayout;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\rootlayout.xml
-android.support.design.widget.CoordinatorLayout;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\shellcontent.xml
-android.support.design.widget.TabLayout;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\rootlayout.xml
+alpha;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\anim\enterfromleft.xml
+alpha;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\anim\exittoleft.xml
+android.support.design.widget.AppBarLayout;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\flyoutcontent.xml
+android.support.design.widget.AppBarLayout;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\rootlayout.xml
+android.support.design.widget.AppBarLayout;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\shellcontent.xml
+android.support.design.widget.BottomNavigationView;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\bottomtablayout.xml
+android.support.design.widget.CoordinatorLayout;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\flyoutcontent.xml
+android.support.design.widget.CoordinatorLayout;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\rootlayout.xml
+android.support.design.widget.CoordinatorLayout;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\shellcontent.xml
+android.support.design.widget.TabLayout;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\rootlayout.xml
 android.support.design.widget.TabLayout;obj\Debug\90\res\layout\tabbar.xml
-android.support.v7.widget.RecyclerView;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\flyoutcontent.xml
-android.support.v7.widget.Toolbar;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\rootlayout.xml
-android.support.v7.widget.Toolbar;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\shellcontent.xml
+android.support.v7.widget.RecyclerView;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\flyoutcontent.xml
+android.support.v7.widget.Toolbar;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\rootlayout.xml
+android.support.v7.widget.Toolbar;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\shellcontent.xml
 android.support.v7.widget.Toolbar;obj\Debug\90\res\layout\toolbar.xml
 background;obj\Debug\90\res\mipmap-anydpi-v26\icon.xml
 background;obj\Debug\90\res\mipmap-anydpi-v26\icon_round.xml
-cache-path;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\40\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+cache-path;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 color;obj\Debug\90\res\values\colors.xml
-external-cache-path;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\40\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
-external-path;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\40\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+external-cache-path;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+external-path;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 foreground;obj\Debug\90\res\mipmap-anydpi-v26\icon.xml
 foreground;obj\Debug\90\res\mipmap-anydpi-v26\icon_round.xml
-FrameLayout;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\bottomtablayout.xml
-item;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\values\styles.xml
+FrameLayout;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\bottomtablayout.xml
+item;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\values\styles.xml
 item;obj\Debug\90\res\values\styles.xml
-LinearLayout;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\bottomtablayout.xml
-paths;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\40\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
-resources;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\values\styles.xml
+LinearLayout;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\bottomtablayout.xml
+paths;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+resources;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\values\styles.xml
 resources;obj\Debug\90\res\values\colors.xml
 resources;obj\Debug\90\res\values\styles.xml
-set;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\anim\enterfromleft.xml
-set;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\anim\enterfromright.xml
-set;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\anim\exittoleft.xml
-set;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\anim\exittoright.xml
-style;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\values\styles.xml
+set;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\anim\enterfromleft.xml
+set;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\anim\enterfromright.xml
+set;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\anim\exittoleft.xml
+set;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\anim\exittoright.xml
+style;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\values\styles.xml
 style;obj\Debug\90\res\values\styles.xml
-translate;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\anim\enterfromleft.xml
-translate;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\anim\enterfromright.xml
-translate;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\anim\exittoleft.xml
-translate;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\anim\exittoright.xml
-xamarin.forms.platform.android.appcompat.FormsViewPager;D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\42\jl\res\layout\rootlayout.xml
+translate;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\anim\enterfromleft.xml
+translate;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\anim\enterfromright.xml
+translate;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\anim\exittoleft.xml
+translate;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\anim\exittoright.xml
+xamarin.forms.platform.android.appcompat.FormsViewPager;D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe.Android\obj\Debug\90\lp\44\jl\res\layout\rootlayout.xml

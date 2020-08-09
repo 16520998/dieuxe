@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
+             xmlns:control="clr-namespace:dieuxe.Behavior"
+             xmlns:local="clr-namespace:dieuxe.CustomControl"
+           Title="Đổi mật khẩu"
+             mc:Ignorable="d"
+             x:Class="dieuxe.Views.ChangePWPage">
+    <ContentPage.Content>
+        <StackLayout Margin="0,70,0,0">
+            <Label Margin="35,0,40,0" Text="Mật khẩu hiện tại" Style="{StaticResource labelStyle}" />
+            <Frame Padding="0" Margin="40,0,40,0"
+               CornerRadius="15" HeightRequest="40" >
+                <local:BorderlessEntry x:Name="pwht" Style="{StaticResource EntryStyle}" Text="{Binding pw}" IsPassword="True" Placeholder="Mật khẩu hiện tại" >
+                   
+                </local:BorderlessEntry >
+            </Frame>
+            <Label Margin="35,0,40,0" Text="Mật khẩu mới" Style="{StaticResource labelStyle}" />
+            <Frame Padding="0" Margin="40,0,40,0"
+               CornerRadius="15" HeightRequest="40" >
+                <local:BorderlessEntry x:Name="txtpassword" Style="{StaticResource EntryStyle}" Text="{Binding newPW}" IsPassword="True" Placeholder="Mật khẩu mới" >
+                   
+                </local:BorderlessEntry >
+            </Frame>
+            <Label Margin="35,0,40,0" Text="Xác nhận mật khẩu" Style="{StaticResource labelStyle}" />
+            <Frame Padding="0" Margin="40,0,40,0"
+               CornerRadius="15" HeightRequest="40" >
+                <local:BorderlessEntry IsPassword="True" Placeholder="Xác nhận mật khẩu mới" >
+                <Entry.Behaviors>
+                        <local:CompareValidationBehavior BindingContext="{x:Reference txtpassword}" Text="{Binding Text}"/>
+                </Entry.Behaviors>
+                    </local:BorderlessEntry >    
+                </Frame>
+         
+            <local:GradientButton   StartColor="#0cebeb"
+                                            EndColor="#20e3b2"
+                                            GradientOrientation="Horizontal"
+                                            Padding="10,0"
+                                             Margin="100,130,100,20"
+                                            TextColor="White"
+                                            CornerRadius="5" 
+                                           WidthRequest="100" HorizontalOptions="Center" x:Name="change" Text="Thay đổi" Command="{Binding ChangePasswordCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

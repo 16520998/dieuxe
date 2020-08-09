@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="dieuxe.Views.notifyPage">
+    <ContentPage.Content>
+        <StackLayout  x:Name="stackLayout">
+            <!--<Label Text="không có thông báo mới!" IsVisible="False" TextColor="Black" Opacity="0.7"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />-->
+            <!--<Button Text="Create Notification"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            Clicked="OnScheduleClick" />-->
+            <Label x:Name="lb" IsVisible="True" Text="không có thông báo mới!" VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" >
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding check }" Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                        <Setter Property="TextColor" Value="Black"/>
+                        <Setter Property="Opacity" Value="0.7"/>
+                      
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <ListView IsPullToRefreshEnabled="True" RefreshCommand="{Binding refreshCommand}" IsRefreshing="{Binding isRefresh}" x:Name="danhsachdangky" ItemsSource="{Binding notify}" HasUnevenRows="True"
+                      AbsoluteLayout.LayoutBounds="0, 200, 1, 1"  AbsoluteLayout.LayoutFlags="SizeProportional" SeparatorVisibility="None" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout  
+                         Orientation="Horizontal" 
+                         BackgroundColor="WhiteSmoke"  >
+                                <Frame CornerRadius="15" WidthRequest="370" Margin="20,7,20,0" Padding="0" HeightRequest="70">
+                                    <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="0">
+                                        <Label Padding="15,15,0,0" Style="{StaticResource labelStyle}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Bạn có chuyến công tác đến "  />
+                                                    <Span   Text="{Binding NoiDi}"  FontAttributes="Bold" />
+                                                    <Span Text=" vào lúc"/>
+                                                    <Span Text="{Binding GioDen}" FontAttributes="Bold"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Padding="15,5,0,0" Style="{StaticResource labelStyle}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Người đi: " FontAttributes="Bold" />
+                                                    <Span  Text="{Binding TenNguoiDi}"  />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <!--<Label Text="{Binding nhanviendangky}"/>-->
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

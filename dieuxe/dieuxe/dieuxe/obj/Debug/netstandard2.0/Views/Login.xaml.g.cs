@@ -17,16 +17,16 @@ namespace dieuxe.Views {
     public partial class Login : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry email;
+        private global::dieuxe.CustomControl.BorderlessEntry email;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry password;
+        private global::dieuxe.CustomControl.BorderlessEntry password;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(Login));
-            email = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "email");
-            password = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "password");
+            email = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.BorderlessEntry>(this, "email");
+            password = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.BorderlessEntry>(this, "password");
         }
     }
 }

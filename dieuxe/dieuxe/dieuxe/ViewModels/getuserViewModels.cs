@@ -11,20 +11,26 @@ using dieuxe.Helpers;
 using System.Net.Http.Headers;
 using Xamarin.Forms;
 using System.Windows.Input;
+using System.Threading.Tasks;
 
 namespace dieuxe.ViewModels
 {
-    class getuserViewModels : INotifyPropertyChanged
+    public class getuserViewModels : INotifyPropertyChanged
     {
-    
-        private string _tennv;
-        private Users _Users;
-        public Users User
+        private int _LienHeID { get; set; }
+        private string _TenLienHe { get; set; }
+        private int _LoailienHe { get; set; }
+        private string _SdtLienLac { get; set; }
+        private string _BoPhan { get; set; }
+        private string _Email { get; set; }
+
+        private LienHeUser _LienHeUser;
+        public LienHeUser LienHeUser
         {
-            get { return _Users; }
+            get { return _LienHeUser; }
             set
             {
-                _Users = value;
+                _LienHeUser = value;
                 OnPropertyChanged();
             }
         }
@@ -33,51 +39,98 @@ namespace dieuxe.ViewModels
             get
             {
                 return new Command(async () =>
-           {
-               Settings.AccessToken = "";
-           });
+                {
+                    Settings.AccessToken = "";
+
+                });
 
             }
         }
-        public getuserViewModels()
+        public  getuserViewModels()
         {
             var accessToken = Settings.AccessToken;
-            GetUserAsync("https://localhost:44328/api/user/profile", accessToken);
+            
         }
-        public async void GetUserAsync(string path, string accessToken)
+        public async Task<LienHeUser> GetUserProfileAsync(string path, string accessToken)
         //public async void GetUserAsync(string path)
         {
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(accessToken);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             HttpResponseMessage response = await client.GetAsync(path);
+           
 
             System.Diagnostics.Debug.WriteLine(response);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                User = JsonConvert.DeserializeObject<Users>(content);
+                LienHeUser  = JsonConvert.DeserializeObject<LienHeUser>(content);
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("error", "you should be login first :( ", "OK");
-                User = null;
+                await Application.Current.MainPage.DisplayAlert("Thông báo", "bạn nên đăng nhập :( ", "OK");
+               LienHeUser  = null;
             }
-          
+            return LienHeUser;
         }
-        
-        public string tennv
+
+        public int LienHeID
         {
-            get { return _tennv; }
+            get { return _LienHeID; }
             set
             {
-                _tennv = value;
+                _LienHeID = value;
                 OnPropertyChanged();
             }
         }
- 
-       
+        public string TenLienHe
+        {
+            get { return _TenLienHe; }
+            set
+            {
+                _TenLienHe = value;
+                OnPropertyChanged();
+            }
+        }
+        public int LoailienHe
+        {
+            get { return _LoailienHe; }
+            set
+            {
+                _LoailienHe = value;
+                OnPropertyChanged();
+            }
+        }
+        public string SdtLienLac
+        {
+            get { return _SdtLienLac; }
+            set
+            {
+                _SdtLienLac = value;
+                OnPropertyChanged();
+            }
+        }
+        public string BoPhan
+        {
+            get { return _BoPhan; }
+            set
+            {
+                _BoPhan = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Email
+        {
+            get { return _Email; }
+            set
+            {
+                _Email = value;
+                OnPropertyChanged();
+            }
+        }
 
-        
+
+
+
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged([CallerMemberName] string propertyName = "")

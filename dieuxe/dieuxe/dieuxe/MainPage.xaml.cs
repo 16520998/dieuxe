@@ -1,4 +1,5 @@
-﻿using dieuxe.ViewModels;
+﻿using dieuxe.Helpers;
+using dieuxe.ViewModels;
 using dieuxe.Views;
 using System;
 using System.Collections.Generic;
@@ -20,87 +21,6 @@ namespace dieuxe
         public MainPage()
         {
             InitializeComponent();
-            DisplayCurLocation();
-            this.mahoadiachi();
-            map.IsShowingUser = true;
-            this.BindingContext = new dangkylichViewmodel();
-        }
-        private void OnMapClicked(object sender, MapClickedEventArgs e)
-        {
-           System.Diagnostics.Debug.WriteLine($"MapClick:{e.Position.Latitude}, {e.Position.Longitude}");
-            var position = new Position(e.Position.Latitude, e.Position.Longitude);
-            var pin =new Pin
-         {
-                Type = PinType.Place,
-                Position = position,
-                Label = "ngu người",
-                Address = "ngu người 1 "
-            };
-        }
-        public async void DisplayCurLocation()
-        {
-            try
-            {
-
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                var location = await Geolocation.GetLocationAsync(request);
-
-
-
-                if (location != null)
-                {
-                    Position p = new Position(location.Latitude, location.Longitude);
-                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Distance.FromKilometers(.444));
-                    map.MoveToRegion(mapSpan);
-                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-                }
-                else
-                {
-                    await DisplayAlert("Permission Denied", "dell kết nối đc gps", "OK");
-                }
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Handle not supported on device exception
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                // Handle not enabled on device exception
-            }
-            catch (PermissionException pEx)
-            {
-                // Handle permission exception
-            }
-            catch (Exception ex)
-            {
-                // Unable to get location
-            }
-        }
-        public async void mahoadiachi()
-        {
-            try
-            {
-                var address = "Microsoft Building 25 Redmond WA USA";
-                var locations = await Geocoding.GetLocationsAsync(address);
-
-                var location = locations?.FirstOrDefault();
-                //if (location != null)
-                //{
-                //   await DisplayAlert("latitude:"+location.Latitude, "longtitude:"+location.Longitude, "OK");
-                //}
-                if (location != null)
-                {
-                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-                }
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Feature not supported on device
-            }
-            catch (Exception ex)
-            {
-                // Handle exception that may have occurred in geocoding
-            }
         }
 
         private async void xemlichdangky_Clicked(object sender, EventArgs e)
@@ -115,12 +35,18 @@ namespace dieuxe
 
         private async void profile_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new getuser());
+            await Navigation.PushAsync(new profile());
         }
 
-        private async void Map_Clicked(object sender, EventArgs e)
+        private async void changePW_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Views.Map());
+            await Navigation.PushAsync(new ChangePWPage());
+        }
+
+        private async void dangxuat_Clicked(object sender, EventArgs e)
+        {
+            Settings.AccessToken = "";
+            Application.Current.MainPage = new NavigationPage(new Login());
         }
     }
 }

@@ -77,7 +77,7 @@ namespace dieuxe.Helpers
         }
 
         // Distance Functions
-        double haversine_distance(Coordinate point1, Coordinate point2)
+        public static double haversine_distance(Coordinate point1, Coordinate point2)
         {
             double R = 6371;
             double lat1 = (point1.Latitude * Math.PI) / 180;

@@ -4,29 +4,34 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             NavigationPage.HasNavigationBar="False"
             x:Class="dieuxe.MainPage">
+    
     <ContentPage.Content>
-
-        <ScrollView Padding="{OnPlatform Android='0,50'}">
+    
+    <ScrollView Padding="{OnPlatform Android='0,50'}">
             <StackLayout>
                 <StackLayout Margin="40,50" Spacing="10">
-                    <Button Text="Show map" Padding="10,0"
-                            CornerRadius="5" Style="{StaticResource DarkButtonStyle}" Clicked="Map_Clicked" />
+                   
                     
                     <Button Text="xem lịch đã đăng kí" Padding="10,0"
                             CornerRadius="5" Style="{StaticResource DarkButtonStyle}" Clicked="xemlichdangky_Clicked" />
 
                     <Button Text="đăng kí lịch" Padding="10,0"
                             CornerRadius="5" Style="{StaticResource DarkButtonStyle}" Clicked="dangkilich_Clicked" />
-
-                    <Button Text="profile" Padding="10,0"
+                    <Button Text="đổi mật khẩu" Padding="10,0"
+                            CornerRadius="5" Style="{StaticResource DarkButtonStyle}" Clicked="changePW_Clicked" />
+                    <Button Text="Trang cá nhân" Padding="10,0"
                             CornerRadius="5" Style="{StaticResource DarkButtonStyle}" Clicked="profile_Clicked" />
+                    <Button Text="Đăng xuất" Padding="10,0" x:Name="dangxuat"
+                            CornerRadius="5" Style="{StaticResource DarkButtonStyle}" Clicked="dangxuat_Clicked" />
+
                 </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-    <maps:Map x:Name="map" MapClicked="OnMapClicked"  />
+  
+
 
 
 </ContentPage>

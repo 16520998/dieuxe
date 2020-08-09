@@ -3,12 +3,430 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" 
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" xmlns:control="clr-namespace:dieuxe.CustomControl"
              mc:Ignorable="d"
+             x:Name="trangbando"
              x:Class="dieuxe.Views.BanDo">
     <ContentPage.Content>
-        <StackLayout x:Name="s">
-            <maps:Map x:Name="map"  MapType="Street" />
-        </StackLayout>
+            <AbsoluteLayout x:Name="content">
+                <maps:Map x:Name="map"  MapType="Street" IsShowingUser="True" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Azure" />
+
+                <!-- steps ( tài xế map) -->
+                <Frame x:Name="steps" AbsoluteLayout.LayoutBounds="0, 0, 1, AutoSize" AbsoluteLayout.LayoutFlags="XProportional, WidthProportional" 
+                   HasShadow="True" Padding="0,0,0,0" BorderColor="Black" CornerRadius="10" IsVisible="False">
+                    <StackLayout x:Name="stepscontent" Spacing="0" BackgroundColor="White" Margin="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <StackLayout x:Name="step" Orientation="Horizontal" Padding="5, 5, 10, 5" BackgroundColor="WhiteSmoke" Grid.Row="0">
+                            <StackLayout x:Name="tieude" HorizontalOptions="FillAndExpand" >
+                                <Label Text="Điểm dừng kế tiếp" FontSize="Micro" VerticalOptions="Start"/>
+                                <Label x:Name="labelDiaChiKeTiep" Text="{Binding DiaChiKeTiep}" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" Style="{StaticResource labelStyle}" Padding="10,0" />
+                                <control:GradientButton x:Name="btnHoanTat" Text="Đã hoàn tất địa điểm này" Command="{Binding DiemKeTiep}" IsVisible="{Binding ChuaHoanThanhMoiDiemDung, Mode=TwoWay}" 
+                                                            HorizontalOptions="Start"
+                                                            HeightRequest="40" VerticalOptions="End" 
+                                                            StartColor="#0cebeb" EndColor="#20e3b2" 
+                                                            GradientOrientation="Horizontal" 
+                                                            Padding="10,0" TextColor="White" CornerRadius="5" 
+                                                            FontSize="Default" />
+                                <!--<Label x:Name="labelGioDenYeuCau" Text="Binding GioDenYeuCau" />-->
+                            </StackLayout>
+                            <!--up icon-->
+                                <Image x:Name="up_down" HeightRequest="30" Source="up" HorizontalOptions="End" Margin="20,0,0,0" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="XemChiTiet" />
+                                    <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+
+                            <StackLayout x:Name="ChiTietDiemDon" Grid.Row="1" >
+                                <ListView x:Name="listChiTietDiemDon" ItemsSource="{Binding DanhSachDiemDung}" ItemTapped="ChiTietNguoiDi"
+                                        HeightRequest="{Binding ChieuCaoListviewDiaChi}" RowHeight="{Binding ListviewDiaChiRowHeight}" VerticalOptions="Fill">
+                                <ListView.Behaviors>
+                                    <control:DeselectItemBehavior />
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <control:CustomViewCell SelectedItemBackgroundColor="Transparent">
+                                                <Grid Margin="0, 8">
+                                                    <Grid.Triggers>
+                                                        <DataTrigger TargetType="Grid" Binding="{Binding Source={x:Reference tickIcon}, Path=IsVisible}" Value="True">
+                                                            <Setter Property="Opacity" Value="0.5" />
+                                                        </DataTrigger>
+                                                    </Grid.Triggers>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="30" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image x:Name="tickIcon" Margin="10,0,0,0" Source="tick" IsVisible="{Binding DaDiQua}" />
+                                                    <Label Text="{Binding DiaChi}" Grid.Column="1" VerticalOptions="CenterAndExpand"   Padding="0" Style="{StaticResource labelStyle}" />
+                                                </Grid>
+                                            </control:CustomViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+                        </Grid>
+
+                        <StackLayout.GestureRecognizers>
+                            <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Frame>
+
+                <ContentView x:Name="popupcontent" BackgroundColor="#C0808080" Padding="0, 0" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
+                    <StackLayout VerticalOptions="Center"  HorizontalOptions="Center">
+                        <Frame x:Name="popuplayout" HasShadow="True"  Scale="0" BackgroundColor="White" >
+                            <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                                
+                            <ListView x:Name="listNguoiDi"  HasUnevenRows="True" Grid.ColumnSpan="2" ItemTapped="listNguoiDi_ItemTapped">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <control:CustomViewCell SelectedItemBackgroundColor="Transparent">
+                                                <Grid>
+                                                    <Label Text="Lên xe" IsVisible="{Binding LenXe}" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="Xuống xe" IsVisible="{Binding XuongXe}" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding TenNguoiDi}" Grid.Row="1" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding SoNguoiDi, StringFormat='{0:F0} người'}" Grid.Row="1" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                                    <ImageButton Source="phone.png" HeightRequest="30" IsVisible="{Binding LenXe}" CommandParameter="{Binding .}" Grid.RowSpan="2" VerticalOptions="Center" Grid.Column="2" Clicked="GoiDienThoai" BackgroundColor="Transparent" />
+                                                    <Label Text="{Binding SoDienThoai}" IsVisible="False" Style="{StaticResource labelStyle}" />
+                                                </Grid>
+                                            </control:CustomViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+
+                                <control:GradientButton Text="Đóng" Grid.Row="1" Grid.Column="1" Clicked="close"
+                                                    StartColor="#0cebeb" EndColor="#20e3b2" GradientOrientation="Horizontal" Padding="10,0" TextColor="White" CornerRadius="5"/>
+                            </Grid>
+                            <!--<ListView  x:Name="listNguoiDi"  HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Label Text="{Binding TenNguoiDi}" />
+                                    </ViewCell>
+                                    </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>-->
+                        </Frame>
+                    </StackLayout>
+                    <!--</StackLayout>-->
+                </ContentView>
+
+                <!--  nút phân tích  -->
+                <control:GradientButton x:Name="nutPhanTich" Clicked="nutphantich_Clicked" Command="{Binding phantichcum}" Text="Bắt đầu phân tích"
+                                    AbsoluteLayout.LayoutBounds=".5, 1, .45, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
+                                    StartColor="#0cebeb" EndColor="#20e3b2" GradientOrientation="Horizontal" Padding="20,10" TextColor="White" CornerRadius="5" HeightRequest="40"
+                                    Margin="0, 0, 0, 50" IsVisible="False" />
+
+                <!--  stack phân tài xế, post lịch  -->
+                <Grid x:Name="gridButton" ColumnSpacing="10" Margin="0, 50, 0, 0" IsVisible="False" 
+                  AbsoluteLayout.LayoutBounds=".5, 0, AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <control:GradientButton x:Name="nutPhantaixe" Clicked="nutPhantaixe_Clicked" Command="{Binding phantichcum}" Text="Phân tài xế"
+                                    Grid.Column="0" HorizontalOptions="Center"
+                                    StartColor="#0cebeb" EndColor="#20e3b2" GradientOrientation="Horizontal" Padding="20, 10" TextColor="White" CornerRadius="5" HeightRequest="40"/>
+
+                    <control:GradientButton x:Name="nutPostdieuxe" Clicked="nutPostdieuxe_Clicked" Command="{Binding phantichcum}" Text="Xác nhận"
+                                    Grid.Column="1" HorizontalOptions="Center"
+                                    StartColor="#0cebeb" EndColor="#20e3b2" GradientOrientation="Horizontal" Padding="20,10" TextColor="White" CornerRadius="5" HeightRequest="40"/>
+                </Grid>
+
+                <!--  trạng thái đang phân tích chuyến đi  -->
+                <ContentView x:Name="contentChoxuly" BackgroundColor="#C0808080" Padding="0, 0" IsVisible="false" 
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
+                    <Frame x:Name="framChoxuly" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center" Margin="20, 0">
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Horizontal">
+                            <ActivityIndicator x:Name="activityChoxuly" IsRunning="False" WidthRequest="40" HeightRequest="40" VerticalOptions="Center"/>
+                            <Label Text="Đang phân tích" FontSize="Small" VerticalOptions="Center" />
+                        </StackLayout>
+                    </Frame>
+                </ContentView>
+
+                <!-- kết quả gom cụm -->
+                <Frame x:Name="FrameDsChuyenDi" AbsoluteLayout.LayoutBounds="0, 0, 1, AutoSize" AbsoluteLayout.LayoutFlags="XProportional, WidthProportional" 
+                   HasShadow="True" Padding="0,0,0,0" BorderColor="Black" CornerRadius="10" IsVisible="False">
+                    <StackLayout x:Name="contentFrameDsChuyenDi" Spacing="0" BackgroundColor="White" Margin="0">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <StackLayout x:Name="stackTomTatKetQua" Orientation="Horizontal" Padding="5, 5, 10, 5" BackgroundColor="WhiteSmoke" Grid.Row="0">
+                                <StackLayout x:Name="TomTatKetQua" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
+                                <Image Margin="2,0,0,0" Source="pin" HorizontalOptions="Center"/>
+                                <Label x:Name="lbSoChuyen" Text="{Binding SoKq, StringFormat='{0:F0} chuyến đi'}" Padding="0,10"  Style="{StaticResource labelStyle}" />
+                                <Label Text=" - " Padding="0,10" />
+                                <Image Source="checklist" Margin="3" HeightRequest="23" HorizontalOptions="Center"/>
+                                <Label x:Name="lbSoLichDangKy" Text="{Binding SoLdk, StringFormat='{0:F0} lịch đăng ký'}" Padding="0,10" Style="{StaticResource labelStyle}" />
+                                </StackLayout>
+
+                                <Image x:Name="up_downFramQl" Source="up" HorizontalOptions="End" Margin="20,0,0,0" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="XemChiTietDsChuyenDi" />
+                                    <PanGestureRecognizer PanUpdated="FramDsChuyenDi_PanUpdated" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+
+                            <StackLayout x:Name="stackChiTietKetQua" Grid.Row="1">
+                                <ListView x:Name="listChiTietKetQua" ItemsSource="{Binding DanhSachChuyenDi}" ItemTapped="ChiTietKetQua_Tapped" RowHeight="70"
+                                         VerticalOptions="Fill" Margin="5,0">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <control:CustomViewCell SelectedItemBackgroundColor="Transparent">
+                                                <Grid Margin="0, 8" RowSpacing="5" ColumnSpacing="5">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="35"/>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="70" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="mark" Grid.RowSpan="2" HeightRequest="30" HorizontalOptions="Center"  />
+                                                <Label Text="Địa chỉ cuối" Style="{StaticResource labelStyle}" FontSize="Micro" Grid.Row="0" Grid.Column="1" Padding="0" />
+                                                    <Label Text="{Binding DiaChiCuoiCung}" Grid.Row="1" Grid.Column="1" LineBreakMode="TailTruncation" MaxLines="2" Style="{StaticResource labelStyle}" Padding="0" />
+                                                    <Label Text="{Binding tongsonguoi, StringFormat='{0:F0} người'}" Grid.RowSpan="2" Grid.Column="2" Style="{StaticResource labelStyle}" Padding="0"
+                                                        VerticalOptions="Center" HorizontalOptions="End"/>
+                                                </Grid>
+                                            </control:CustomViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+                        </Grid>
+
+                        <StackLayout.GestureRecognizers>
+                            <PanGestureRecognizer PanUpdated="FramDsChuyenDi_PanUpdated" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout x:Name="chitietdiadiem" Padding="20" IsVisible="false" Margin="10, 0"
+                         AbsoluteLayout.LayoutBounds=".5, .5, 1, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional">
+                    <Frame x:Name="popuplayout_chitietdiadiem" CornerRadius="15" HasShadow="True"  Scale="0" BackgroundColor="White" Padding="5" >
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <!--location image detail-->
+                        <StackLayout Orientation="Horizontal" Grid.ColumnSpan="3">
+                            <Image Source="location_pin"  Margin="15,0,0,0" HeightRequest="25" HorizontalOptions="Start"/>
+                            <Label x:Name="diachidiadiem"  Padding="0,10" Style="{StaticResource labelStyle}" FontSize="16" />
+                        </StackLayout>
+                            <!--time image details-->
+                        <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                        <Image Source="time" HeightRequest="30"  HorizontalOptions="Start"/>
+                        <Label x:Name="lbGioxeden" Padding="0,10" BindingContext="{x:Reference Name=trangbando}" HorizontalOptions="Start"  Style="{StaticResource labelStyle}">
+                                <!--<Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference listluotdi}, Path=IsVisible}" Value="True">
+                                    <Setter Property="Text" Value="{Binding gioden_luotdi, StringFormat='Xe đến lúc: {0:F0}'}" />
+                                </DataTrigger>
+
+                                <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference listluotdi}, Path=IsVisible}" Value="False">
+                                    <Setter Property="Text" Value="{Binding gioden_luotve, StringFormat='Xe đến lúc: {0:F0}'}" />
+                                </DataTrigger>
+                            </Label.Triggers>-->
+                            </Label>
+                        </StackLayout>
+                        <control:GradientButton x:Name="btnChuyenLuotDi" Text="Xem lượt về" Grid.Row="1" Grid.Column="2" HorizontalOptions="End" Clicked="btnChuyenLuotDi_Clicked"
+                                                    StartColor="#0cebeb" EndColor="#20e3b2" GradientOrientation="Horizontal" Padding="0,0" TextColor="White" CornerRadius="2" HeightRequest="17">
+                                <control:GradientButton.Triggers>
+                                    <DataTrigger TargetType="control:GradientButton" Binding="{Binding Source={x:Reference listluotdi}, Path=IsVisible}" Value="True">
+                                        <Setter Property="Text" Value="Xem lượt về" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="control:GradientButton" Binding="{Binding Source={x:Reference listluotdi}, Path=IsVisible}" Value="False">
+                                        <Setter Property="Text" Value="Xem lượt đi" />
+                                    </DataTrigger>
+                                </control:GradientButton.Triggers>
+                            </control:GradientButton>
+                        <!--people getin and getout bus detail-->
+                            <StackLayout  Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                            <Image x:Name="im" Margin="10,0,0,0"  HorizontalOptions="Center" HeightRequest="20"  >
+                            <Image.Triggers>
+                                    <DataTrigger TargetType="Image" Binding="{Binding Source={x:Reference listluotdi}, Path=IsVisible}" Value="True">
+                                        <Setter Property="Source" Value="getout" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Image" Binding="{Binding Source={x:Reference listluotdi}, Path=IsVisible}" Value="False">
+                                        <Setter Property="Source" Value="getin" />
+                                        <Setter Property="HorizontalOptions" Value="Center"/>
+                            </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Label x:Name="lblenxe_xuongxe" Padding="0,10" Style="{StaticResource labelStyle}">
+                            <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference listluotdi}, Path=IsVisible}" Value="True">
+                                        <Setter Property="Text" Value="Xuống xe tại nơi này" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference listluotdi}, Path=IsVisible}" Value="False">
+                                    <Setter Property="Text" Value="Lên xe tại nơi này" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        </StackLayout>
+                        <Label x:Name="sn" Text="Số người" Style="{StaticResource labelStyle}" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center"/>
+                        <Label Text="Thời gian yêu cầu" Style="{StaticResource labelStyle}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Center"/>
+                        <Label x:Name="lbdiemdi" Text="Địa điểm này không yêu cầu thời gian" IsVisible="False"
+                               Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource labelStyle}" />
+                            <ListView x:Name="listluotdi" ItemsSource="{Binding DsLuotDi}" BindingContext="{x:Reference Name=trangbando}" HasUnevenRows="True" 
+                                  Grid.Row="4" Grid.ColumnSpan="3" ItemTapped="listNguoiDi_ItemTapped" RowHeight="50">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <control:CustomViewCell SelectedItemBackgroundColor="Transparent">
+                                            <Grid RowSpacing="5" ColumnSpacing="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.3*" />
+                                                    <ColumnDefinition Width="0.7*" />
+                                                </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding songuoi}" HorizontalOptions="Center" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                            <Label Text="{Binding thoigianden}" HorizontalOptions="Center" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                            <!--<Label Text="{Binding songuoi, StringFormat='Số người: {0:F0}'}" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                <Label Text="{Bi--><!--nding thoigianden, StringFormat='Thời gian yêu cầu: {0:F0}'}" Grid.Column="1" Style="{StaticResource labelStyle}" />-->
+                                            </Grid>
+                                        </control:CustomViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                            <ListView x:Name="listluotve" ItemsSource="{Binding DsLuotVe}" BindingContext="{x:Reference Name=trangbando}" HasUnevenRows="True" 
+                             Grid.Row="4" Grid.ColumnSpan="3" ItemTapped="listNguoiDi_ItemTapped" RowHeight="50" IsVisible="False">
+                                <ListView.Triggers>
+                                    <DataTrigger TargetType="ListView" Binding="{Binding Source={x:Reference listluotdi}, Path=IsVisible}" Value="True">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+
+                                    <DataTrigger TargetType="ListView" Binding="{Binding Source={x:Reference listluotdi}, Path=IsVisible}" Value="False">
+                                        <Setter Property="IsVisible" Value="True" />
+                                    </DataTrigger>
+                                </ListView.Triggers>
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <control:CustomViewCell SelectedItemBackgroundColor="Transparent">
+                                            <Grid RowSpacing="5" ColumnSpacing="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.3*" />
+                                                    <ColumnDefinition Width="0.7*" />
+                                                </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding songuoi}" HorizontalOptions="Center" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                            <Label Text="{Binding thoigianden}" HorizontalOptions="Center" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                            <!--<Label Text="{Binding songuoi, StringFormat='Số người: {0:F0}'}" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                <Label Text="{Binding thoigianve, StringFormat='Thời gian yêu cầu: {0:F0}'}" Grid.Column="1" Style="{StaticResource labelStyle}" />-->
+                                            </Grid>
+                                        </control:CustomViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                            <control:GradientButton Text="Đóng" Grid.Row="5" Grid.Column="2" Clicked="close_chitietdiadiem" HeightRequest="35"
+                                                    StartColor="#0cebeb" EndColor="#20e3b2" GradientOrientation="Horizontal" Padding="0,0" TextColor="White" CornerRadius="2"/>
+                        </Grid>
+                        <!--<ListView  x:Name="listNguoiDi"  HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Label Text="{Binding TenNguoiDi}" />
+                                    </ViewCell>
+                                    </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>-->
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout x:Name="stackchontaixe" IsVisible="false" Margin="10, 0"
+                         AbsoluteLayout.LayoutBounds=".5, 50, AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="XProportional">
+                    <Frame x:Name="popuplayout_chontaixe" HasShadow="True" CornerRadius="20" Scale="0" BackgroundColor="White" Padding="5" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ListView x:Name="lvDsDieuXe" ItemsSource="{Binding DsDieuXe}" Grid.Row="0" RowHeight="130">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid ColumnSpacing="5">
+                                                <!--<Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>-->
+                                                <Label Text="{Binding IndexDieuXe, StringFormat='Chuyến thứ {0:F0}'}" Grid.Row="0" Grid.Column="0" Style="{StaticResource labelStyle}" Padding="0,5" />
+                                                <Picker Title="Chọn tài xế" ItemsSource="{Binding dsTaixe}" ItemDisplayBinding="{Binding TenLienHe}" SelectedItem="{Binding SelectItem, Mode=TwoWay}"
+                                                    Grid.Row="0" Grid.Column="1" FontSize="15"/>
+
+                                                <Label Text="Thêm ghi chú:" Grid.Row="1" Grid.Column="0" Style="{StaticResource labelStyle}" Padding="0,0" />
+                                            <Editor Text="{Binding GhiChu, Mode=TwoWay}" Placeholder="Ghi chú" PlaceholderColor="Olive" Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" />
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        
+                        <control:GradientButton x:Name="xacnhantaixe" StartColor="#0cebeb" EndColor="#20e3b2" GradientOrientation="Horizontal" Text="OK" TextColor="White" Grid.Row="1" HorizontalOptions="Center" CornerRadius="2" Clicked="xacnhantaixe_Clicked" />
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+                
+                
+                
+                
+                
+                
+                <Frame x:Name="searchFrame" IsVisible="False" CornerRadius="10" Padding="0,0,0,0"  AbsoluteLayout.LayoutBounds="0.5,0.06,0.75,0.07" AbsoluteLayout.LayoutFlags="All">
+               
+
+                <Grid  BackgroundColor="White" 
+                                           VerticalOptions="FillAndExpand" 
+                                           Padding="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"  />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="7*" />
+
+                    </Grid.ColumnDefinitions>
+                    <control:BorderlessEntry x:Name="timkiem" 
+                                                     TextChanged="OnTextChanged"  
+                                                     Text="{Binding searchvalue}"  
+                                                     Style="{StaticResource EntryStyle}"  
+                                                     WidthRequest="250" FontSize="15" Placeholder="Tìm kiếm địa điểm..." 
+                                                      Grid.Column="1" Grid.Row="0"
+                                                      />
+                    <Image Source="search.png" Margin="7" />
+                </Grid>
+            </Frame>
+            <Frame x:Name="kq" CornerRadius="10" IsVisible="false"  AbsoluteLayout.LayoutBounds="0.5,0.35,0.75,0.7" AbsoluteLayout.LayoutFlags="All">
+                <ListView  x:Name="listkq" ItemsSource="{Binding Addresses}"  IsVisible="True"  ItemTapped="Listkq_ItemSelected"  HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Address}" TextColor="DarkViolet"/>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+            <control:GradientButton  StartColor="#4CB8C4"
+                                     EndColor="#3CD3AD"
+                                     VerticalOptions="Center"
+                                     GradientOrientation="Horizontal"  BorderRadius="3"
+                                     TextColor="White" x:Name="select" IsVisible="False" Text="chọn địa điểm" Clicked="select_Clicked" AbsoluteLayout.LayoutBounds=".5,0.95,130,35" AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+        </AbsoluteLayout>
+        <!--</StackLayout>-->
     </ContentPage.Content>
 </ContentPage>

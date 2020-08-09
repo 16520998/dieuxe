@@ -3,66 +3,96 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:control="clr-namespace:dieuxe.CustomControl"
              mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
              x:Class="dieuxe.Views.TaiXeView">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Aqua">
-            <StackLayout  Orientation="Horizontal" HorizontalOptions="End">
-                <Label x:Name="username" Text="Tài xế" />
+        <StackLayout>
+            <StackLayout Margin="0,15" Orientation="Horizontal" HorizontalOptions="End" Padding="0,0,0,20">
+                <Label  FontSize="20" TextColor="Black" Opacity="0.7">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Xin chào: " FontAttributes="Bold"  />
+                            <Span x:Name="ten"   />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
                 <Image Source="account.png" WidthRequest="20" HeightRequest="20"/>
             </StackLayout>
             <RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Grid x:Name="tabnames"
-                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=30}"
-                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}">
-                    <StackLayout x:Name="chuyenchuadi" Grid.Column="0" HorizontalOptions="Center">
-                        <Label x:Name="labelchuyenchuadi" Text="Chuyến chưa đi" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="tabTapped" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                    <StackLayout x:Name="chuyendadi" Grid.Column="1" HorizontalOptions="Center">
-                        <Label x:Name="labelchuyendadi" Text="Chuyến đã đi" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="tabTapped" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </Grid>
+                <Frame x:Name="tabnames" Padding="0" CornerRadius="5" BackgroundColor="Transparent"
+                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=70}"
+                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=10}">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="3" />
+                        </Grid.RowDefinitions>
+                        <StackLayout x:Name="chuyenchuadi" Grid.Column="0" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                            <control:TitleWithIcon x:Name="labelchuyenchuadi" Title="Chuyến chưa đi" Icon="notmovetruck.png"  TextColor="Black"/>
+                            <!--<Label x:Name="labelchuyenchuadi" Text="Chuyến chưa đi" />-->
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="tabTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout x:Name="hrChuyenchuadi" BackgroundColor="LightSeaGreen" Grid.Row="1" Margin="10,0" />
+                        <StackLayout x:Name="chuyendadi" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                            <control:TitleWithIcon x:Name="labelchuyendadi" Title="Chuyến đã đi" Icon="mover_truck.png" TextColor="Black" />
+                            <!--<Label x:Name="labelchuyendadi" Text="Chuyến đã đi" />-->
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="tabTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout x:Name="hrChuyendadi" BackgroundColor="LightSeaGreen" Grid.Row="1" Grid.Column="1" Margin="10,0" />
+                    </Grid>
+                </Frame>
                 <StackLayout x:Name="tabs" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=tabnames, Property=Y, Factor=1,Constant=30}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=tabnames, Property=Height, Factor=1, Constant=5}"
                             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant= 0}"
-                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-30}">
-                    <StackLayout x:Name="tab1"  Spacing="0" VerticalOptions="FillAndExpand">
-                        <Label x:Name="LabelThongBaoListChuaDiNull" FontSize="Small" Text="Không có chuyến đi cần thực hiện hôm nay" HorizontalOptions="Center" IsVisible="False" />
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-75}">
+                    <StackLayout x:Name="tab1"  Spacing="0" VerticalOptions="FillAndExpand" Margin="10, 0">
+                        <Label x:Name="LabelThongBaoListChuaDiNull" FontSize="Small" Text="Không có chuyến đi cần thực hiện hôm nay" Padding="0, 20, 0, 0" HorizontalOptions="Center" IsVisible="False" />
                         <ListView x:Name="listchuyenchuadi" ItemsSource="{Binding DanhSachChuyenChuaDi}" HasUnevenRows="True" SeparatorVisibility="None"
                                   ItemTapped="itemTapped">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Grid Margin="10, 10" ColumnSpacing="0" RowSpacing="0" VerticalOptions="StartAndExpand" BackgroundColor="White">
-                                            <!--<Grid.RowDefinitions>
-                                                <RowDefinition Height="*"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>-->
-                                            
-                                            <Label Text="Nơi bắt đầu: " VerticalOptions="Center" Grid.Row="0" Grid.Column="0"></Label>
-                                            <Label Text="{Binding diemdau}" VerticalOptions="Center" Grid.Row="0" Grid.Column="1"></Label>
-                                            <Label Text="Nơi kết thúc: " VerticalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
-                                            <Label Text="{Binding diemcuoi}" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" ></Label>
-                                            <Label Text="Số người: " VerticalOptions="Center" Grid.Row="2" Grid.Column="0" ></Label>
-                                            <Label Text="{Binding songuoi}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"></Label>
-                                            <Label Text="Giờ đi: " VerticalOptions="Center" Grid.Row="3" Grid.Column="0"></Label>
-                                            <Label Text="{Binding giodi}" VerticalOptions="Center" Grid.Row="3" Grid.Column="1"></Label>
-                                            <Label Text="Giờ về (dự kiến): " VerticalOptions="Center" Grid.Row="4" Grid.Column="0"></Label>
-                                            <Label Text="{Binding giove}" VerticalOptions="Center" Grid.Row="4" Grid.Column="1" ></Label>
+                                        <StackLayout Padding="10, 5, 10, 10" Orientation="Horizontal" >
+                                            <Frame CornerRadius="15">
+                                                <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="StartAndExpand" BackgroundColor="White" Padding="0" Margin="0" HorizontalOptions="FillAndExpand" >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
 
-                                            
-<!--<Label x:Name="tuyenduong" Text="{Binding tuyenduong}"  IsVisible="False" />-->
-                                        </Grid>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="1" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="Biển số xe: " VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding BienKiemSoat}" VerticalOptions="Center" Grid.Row="0" FontAttributes="Bold" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="Nơi bắt đầu: " VerticalOptions="Center" Grid.Row="1" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding NoiDi}" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="Nơi kết thúc: " VerticalOptions="Center" Grid.Row="2" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding NoiDen}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="Số người: " VerticalOptions="Center" Grid.Row="3" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding SoNguoi}" VerticalOptions="Center" Grid.Row="3" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="Giờ đi: " VerticalOptions="Center" Grid.Row="4" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding GioDi}" VerticalOptions="Center" Grid.Row="4" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="Giờ về (dự kiến): " VerticalOptions="Center" Grid.Row="5" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding GioVe}" VerticalOptions="Center" Grid.Row="5" Grid.Column="1" Style="{StaticResource labelStyle}" />
+
+                                                    <!--<Label x:Name="tuyenduong" Text="{Binding tuyenduong}"  IsVisible="False" />-->
+                                                </Grid>
+                                            </Frame>
+                                        </StackLayout>
+                                        
                                         
                                     </ViewCell>
                                 </DataTemplate>
@@ -75,28 +105,37 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Grid Margin="10, 10" ColumnSpacing="0" RowSpacing="0" VerticalOptions="StartAndExpand" BackgroundColor="White">
-                                            <!--<Grid.RowDefinitions>
-                                                <RowDefinition Height="*"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>-->
+                                        <StackLayout Padding="20, 5, 20, 10" Orientation="Horizontal" >
+                                            <Frame CornerRadius="15">
+                                                <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="StartAndExpand" BackgroundColor="White" Padding="0" Margin="0" HorizontalOptions="FillAndExpand" >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="1" />
+                                                    </Grid.ColumnDefinitions>
 
-                                            <Label Text="Nơi bắt đầu: " VerticalOptions="Center" Grid.Row="0" Grid.Column="0"></Label>
-                                            <Label Text="{Binding diemdau}" VerticalOptions="Center" Grid.Row="0" Grid.Column="1"></Label>
-                                            <Label Text="Nơi kết thúc: " VerticalOptions="Center" Grid.Row="1" Grid.Column="0"></Label>
-                                            <Label Text="{Binding diemcuoi}" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" ></Label>
-                                            <Label Text="Số người: " VerticalOptions="Center" Grid.Row="2" Grid.Column="0" ></Label>
-                                            <Label Text="{Binding songuoi}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"></Label>
-                                            <Label Text="Giờ đi: " VerticalOptions="Center" Grid.Row="3" Grid.Column="0"></Label>
-                                            <Label Text="{Binding giodi}" VerticalOptions="Center" Grid.Row="3" Grid.Column="1"></Label>
-                                            <Label Text="Giờ về (dự kiến): " VerticalOptions="Center" Grid.Row="4" Grid.Column="0"></Label>
-                                            <Label Text="{Binding giove}" VerticalOptions="Center" Grid.Row="4" Grid.Column="1" ></Label>
-                                            
-                                        </Grid>
+                                                    <Label Text="Nơi bắt đầu: " VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding NoiDi}" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="Nơi kết thúc: " VerticalOptions="Center" Grid.Row="1" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding NoiDen}" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="Số người: " VerticalOptions="Center" Grid.Row="2" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding SoNguoi}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="Giờ đi: " VerticalOptions="Center" Grid.Row="3" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding GioDi}" VerticalOptions="Center" Grid.Row="3" Grid.Column="1" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="Giờ về (dự kiến): " VerticalOptions="Center" Grid.Row="4" Grid.Column="0" Style="{StaticResource labelStyle}" />
+                                                    <Label Text="{Binding GioVe}" VerticalOptions="Center" Grid.Row="4" Grid.Column="1" Style="{StaticResource labelStyle}" />
+
+                                                    <!--<Label x:Name="tuyenduong" Text="{Binding tuyenduong}"  IsVisible="False" />-->
+                                                </Grid>
+                                            </Frame>
+                                        </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

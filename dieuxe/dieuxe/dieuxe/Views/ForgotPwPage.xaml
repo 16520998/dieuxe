@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:customcontrol="clr-namespace:dieuxe.CustomControl"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="True"
+             x:Class="dieuxe.Views.ForgotPwPage">
+    <ContentPage.Content>
+        <customcontrol:GradientStackLayout  Padding="10" >
+                <Label Style="{StaticResource labelStyle}" HorizontalOptions="Center" Margin="0,150,10,0" Text="Nhập địa chỉ email của bạn:"/>
+                <Frame Padding="0" Margin="40,0,40,0"
+               CornerRadius="15" HeightRequest="40" >
+                    <customcontrol:BorderlessEntry  Style="{StaticResource EntryStyle}" x:Name="email" Text="{Binding email}"/>
+            </Frame>
+           
+
+            <customcontrol:GradientButton   StartColor="#0cebeb"
+                                            EndColor="#20e3b2"
+                                            GradientOrientation="Horizontal"
+                                            Padding="10,0"
+                                            Margin="100,200,100,20"
+                                            TextColor="White"
+                                            CornerRadius="5" 
+                                           WidthRequest="100" HorizontalOptions="Center" x:Name="send" Text="Gửi" Command="{Binding ForgotCommand}"/>
+        </customcontrol:GradientStackLayout>
+    </ContentPage.Content>
+</ContentPage>

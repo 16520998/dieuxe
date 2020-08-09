@@ -56,5 +56,82 @@ namespace dieuxe.Helpers
                 AppSettings.AddOrUpdateValue("AccessToken", value);
             }
         }
+        public static string LienHeID
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("LienHeID", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("LienHeID", value);
+            }
+        }
+        public static string TenLienHe
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("TenLienHe", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("TenLienHe", value);
+            }
+        }
+        public static string LoailienHe
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("LoailienHe", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("LoailienHe", value);
+            }
+        }
+        public static string SdtLienLac
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("SdtLienLac", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("SdtLienLac", value);
+            }
+        }
+        public static string BoPhan
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("BoPhan", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("BoPhan", value);
+            }
+        }
+        public static string Email
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("Email ", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("Email ", value);
+            }
+        }
+        public static string chucvu
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("chucvu", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("chucvu", value);
+            }
+        }
     }
 }

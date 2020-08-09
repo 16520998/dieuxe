@@ -2,55 +2,202 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="clr-namespace:dieuxe.CustomControl"
              mc:Ignorable="d"
-             x:Class="dieuxe.Views.QuanLy">
+              NavigationPage.HasNavigationBar="False"
+             x:Class="dieuxe.Views.QuanLy"
+             Title="Quản lý điều xe" x:Name="trangquanly">
     <ContentPage.Content>
         <AbsoluteLayout>
-            <StackLayout VerticalOptions="Start" Orientation="Horizontal" HorizontalOptions="End" AbsoluteLayout.LayoutBounds="0, 0, 1, 50" AbsoluteLayout.LayoutFlags="WidthProportional">
-                <Label x:Name="username" Text="Nhân viên" />
-                <Image Source="account.png" WidthRequest="20" HeightRequest="20"/>
+
+
+            <control:GradientStackLayout
+              StartColor="#FFFFFF "
+            EndColor="#FFFFFF"   BackgroundColor="LightGreen"  Orientation="Horizontal"  AbsoluteLayout.LayoutBounds="0, 0, 1, 0.25" AbsoluteLayout.LayoutFlags="All">
+                <Label Margin="250,10,0,0"   FontSize="20" TextColor="Black" Opacity="0.7">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Xin chào: " FontAttributes="Bold" />
+                            <Span x:Name="ten"   />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+                <!--<Image Source="account.png" WidthRequest="20" HeightRequest="10"/>-->
+            </control:GradientStackLayout>
+            <control:GradientButton StartColor="#0cebeb"
+                                    EndColor="#20e3b2"
+                                    GradientOrientation="Horizontal"
+                                    x:Name="buttonphantich" Text="Gom nhóm các chuyến đi này" 
+                                    Clicked="buttonphantich_Clicked" BorderColor="#690896" 
+                                    BorderWidth="1" BackgroundColor="Azure" 
+                                    CornerRadius="5" TextColor="White"
+                                    AbsoluteLayout.LayoutBounds="0.9, 80, 210, 40" 
+                                    AbsoluteLayout.LayoutFlags="XProportional" IsVisible="True">
+                <Button.Triggers>
+                    <MultiTrigger TargetType="Button">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding KoCoLichDK}" Value="False" />
+                            <!--<BindingCondition Binding="{Binding Source={x:Reference StackLoading}, Path=IsVisible}" Value="False" />-->
+                        </MultiTrigger.Conditions>
+                        <Setter Property="IsVisible" Value="True" />
+                    </MultiTrigger>
+                </Button.Triggers>
+            </control:GradientButton>
+            <Label Margin="0,0,0,10" Padding="10,0,0,0" FontSize="Medium" BackgroundColor="White" 
+                   Text="Lịch đăng ký công tác ngày mai"  Opacity="0.7"
+                   AbsoluteLayout.LayoutBounds="0, 140, 1, 50" TextColor="Black"
+                   AbsoluteLayout.LayoutFlags="XProportional, WidthProportional" />
+            <Label Margin="10,0,0,10"  x:Name="lb1" FontSize="Medium" TextColor="Black" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0, 350, 1, 40" AbsoluteLayout.LayoutFlags="XProportional, WidthProportional">
+                <Label.Triggers>
+                    <!--<DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference StackLoading}, Path=IsVisible}" Value="True">
+                        <Setter Property="Text" Value="Đang lấy danh sách lịch đăng ký công tác" />
+                    </DataTrigger>-->
+                    <!--<DataTrigger TargetType="Label" Binding="{Binding KoCoLichDK}"  Value="False">
+                        <Setter Property="Text" Value="Lịch đăng ký công tác ngày mai" />
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>-->
+
+                    <MultiTrigger TargetType="Label"  >
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding KoCoLichDK}" Value="True" />
+                            <BindingCondition Binding="{Binding Source={x:Reference StackLoading}, Path=IsVisible}" Value="False" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Text"  Value="Không có lịch đăng ký công tác nào vào ngày mai" />
+                        <Setter Property="IsVisible" Value="True" />
+                    </MultiTrigger>
+                </Label.Triggers>
+            </Label>
+            <Label x:Name="lb2" Margin="0,0,0,0" Padding="10,0,0,0"  TextColor="Black" BackgroundColor="WhiteSmoke"  
+                   Text="Ấn từng mục để xem chi tiết" IsVisible="False" 
+                   FontSize="Small" AbsoluteLayout.LayoutBounds="0, 175, 1, 30" 
+                   AbsoluteLayout.LayoutFlags="XProportional, WidthProportional" >
+                <Label.Triggers>
+                    <MultiTrigger TargetType="Label">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding KoCoLichDK}" Value="False" />
+                            <!--<BindingCondition Binding="{Binding Source={x:Reference StackLoading}, Path=IsVisible}" Value="False" />-->
+                        </MultiTrigger.Conditions>
+                        <Setter Property="IsVisible" Value="True" />
+                    </MultiTrigger>
+                </Label.Triggers>
+            </Label>
+            <!--<Label x:Name="lbNoData" Text="Không có lịch đăng ký công tác nào hôm nay" FontSize="Small" AbsoluteLayout.LayoutBounds="0, 130, 250, 20" AbsoluteLayout.LayoutFlags="XProportional" IsVisible="False" >
+                <Label.Triggers>
+                    <MultiTrigger TargetType="Label">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding KoCoLichDK}" Value="True" />
+                            <BindingCondition Binding="{Binding Source={x:Reference activityIndicator}, Path=IsRunning}" Value="False" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="IsVisible" Value="True" />
+                    </MultiTrigger>
+                </Label.Triggers>
+            </Label>-->
+            <StackLayout x:Name="StackLoading" 
+                         AbsoluteLayout.LayoutBounds=".5, .5, AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" >
+                <ActivityIndicator x:Name="activityIndicator" HorizontalOptions="Center" WidthRequest="40" HeightRequest="40" > <!--IsRunning="{Binding LayDuLieuXong}" IsVisible="{Binding LayDuLieuXong}"-->
+                    <ActivityIndicator.Triggers>
+                        <DataTrigger TargetType="ActivityIndicator" Binding="{Binding LayDuLieuXong}" Value="False">
+                            <Setter Property="IsRunning" Value="True" />
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="ActivityIndicator" Binding="{Binding LayDuLieuXong}" Value="True">
+                            <Setter Property="IsRunning" Value="False" />
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </ActivityIndicator.Triggers>
+                </ActivityIndicator>
+
+                <Label Text="Xin chờ" HorizontalOptions="Center" FontSize="Small" />
+
+                <StackLayout.Triggers>
+                    <DataTrigger TargetType="StackLayout" Binding="{Binding Source={x:Reference activityIndicator}, Path=IsRunning}" Value="False">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </StackLayout.Triggers>
             </StackLayout>
-            <Button x:Name="buttonphantich" Text="Gom nhóm các chuyến đi này" Clicked="buttonphantich_Clicked" BorderColor="#690896" BorderWidth="1" BackgroundColor="Azure" CornerRadius="10" TextColor="#690896"
-                    AbsoluteLayout.LayoutBounds="1, 50, 230, 40" AbsoluteLayout.LayoutFlags="XProportional" />
-            <Label Text="Lịch đăng ký công tác hôm nay" AbsoluteLayout.LayoutBounds="0, 100, 250, 30" AbsoluteLayout.LayoutFlags="XProportional" />
-            <Label Text="Ấn từng mục để xem chi tiết" FontSize="Small" AbsoluteLayout.LayoutBounds="0, 130, 250, 20" AbsoluteLayout.LayoutFlags="XProportional" />
-            <ListView x:Name="danhsachdangky" ItemTapped="chitietdangky" IsPullToRefreshEnabled="True" ItemsSource="{Binding DanhSachDangKy}" HasUnevenRows="True"
-                      AbsoluteLayout.LayoutBounds="0, 160, 1, 1" AbsoluteLayout.LayoutFlags="SizeProportional" >
+            
+            <ListView x:Name="danhsachdangky"  ItemTapped="chitietdangky" IsPullToRefreshEnabled="True" ItemsSource="{Binding DanhSachDangKy}" HasUnevenRows="True"
+                      AbsoluteLayout.LayoutBounds="0, 200, 1, 1"  AbsoluteLayout.LayoutFlags="SizeProportional" SeparatorVisibility="None" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="12,6">
-                                <Label Text="{Binding ngaydangky}"/>
-                                <Label Text="{Binding nhanviendangky}"/>
+                            <StackLayout  
+                         Orientation="Horizontal" 
+                         BackgroundColor="WhiteSmoke"  >
+                                <Frame CornerRadius="15" WidthRequest="370" Margin="20,7,20,0" Padding="0" HeightRequest="70">
+                                <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="0">
+                                        <Label Padding="15,15,0,0" Style="{StaticResource labelStyle}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Ngày đăng kí: " FontAttributes="Bold" />
+                                                    <Span   Text="{Binding NgayDangKy}"  />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                       </Label>
+                                        <Label Padding="15,5,0,0" Style="{StaticResource labelStyle}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Người đi: " FontAttributes="Bold" />
+                                                    <Span  Text="{Binding TenNguoiDi}"  />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                        </Label>
+                                        <!--<Label Text="{Binding nhanviendangky}"/>-->
+                            </StackLayout>
+                                </Frame>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
+<!--chi tiết lịch-->
             <ContentView x:Name="popupcontent" BackgroundColor="#C0808080" Padding="10, 0" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                    <Frame x:Name="popuplayout" HasShadow="True"  Scale="0" BackgroundColor="White" >
-                        <Grid>
-                            <Label Text="Ngày đăng ký: " Grid.Row="0" Grid.Column="0" />
-                            <Label Text="Nhân viên: " Grid.Row="1" Grid.Column="0" />
-                            <Label Text="Số người: " Grid.Row="2" Grid.Column="0" />
-                            <Label Text="Nơi đón: " Grid.Row="3" Grid.Column="0" />
-                            <Label Text="Nơi đến: " Grid.Row="4" Grid.Column="0" />
-                            <Label Text="Giờ đến: " Grid.Row="5" Grid.Column="0" />
-                            <Label Text="Giờ về: " Grid.Row="6" Grid.Column="0" />
+                <StackLayout Margin="15,30,15,30"  >
+                    <Frame x:Name="popuplayout" BackgroundColor="AliceBlue" Margin="0,0,0,50"  HasShadow="True" CornerRadius="10" Scale="0"  >
+                        <StackLayout>
+                            <Label Text="Chi tiết lịch đăng kí" Opacity="1"  TextColor="Black" FontSize="Large" Padding="10,0,0,20"/>
 
-                            <Label x:Name="chitietngaydangky" Grid.Row="0" Grid.Column="1" />
-                            <Label x:Name="chitietnhanvien" Grid.Row="1" Grid.Column="1" />
-                            <Label x:Name="chitietsonguoi" Grid.Row="2" Grid.Column="1" />
-                            <Label x:Name="chitietnoidon" Grid.Row="3" Grid.Column="1" />
-                            <Label x:Name="chitietnoiden" Grid.Row="4" Grid.Column="1" />
-                            <Label x:Name="chitietgioden" Grid.Row="5" Grid.Column="1" />
-                            <Label x:Name="chitietgiove" Grid.Row="6" Grid.Column="1" />
-                            
-                            <Button Text="Đóng" Grid.Row="7" Grid.Column="1" Clicked="close" />
+
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2.25*"/>
+                                </Grid.ColumnDefinitions>
+                            <Label Text="Ngày đăng ký: " Style="{StaticResource labelStyle}"  Grid.Row="0" Grid.Column="0" />
+                            <!--<Label Text="Nhân viên: " Grid.Row="1" Grid.Column="0" />-->
+                            <Label Text="Số người: " Style="{StaticResource labelStyle}" Grid.Row="1" Grid.Column="0" />
+                            <Label Text="Nơi đón: " Style="{StaticResource labelStyle}" Grid.Row="2" Grid.Column="0" />
+                            <Label Text="Nơi đến: " Style="{StaticResource labelStyle}"  Grid.Row="3" Grid.Column="0" />
+                            <Label Text="Giờ đến: " Style="{StaticResource labelStyle}" Grid.Row="4" Grid.Column="0" />
+                            <Label Text="Giờ về: " Style="{StaticResource labelStyle}" Grid.Row="5" Grid.Column="0" />
+
+                            <Label x:Name="chitietngaydangky" Style="{StaticResource labelStyle}" Grid.Row="0" Grid.Column="1" />
+                            <!--<Label x:Name="chitietnhanvien" Grid.Row="1" Grid.Column="1" />-->
+                            <Label x:Name="chitietsonguoi" Style="{StaticResource labelStyle}" Grid.Row="1" Grid.Column="1" />
+                                <Label x:Name="chitietnoidon" Style="{StaticResource labelStyle}" Grid.Row="2" Grid.Column="1" />
+                                <Label x:Name="chitietnoiden" Style="{StaticResource labelStyle}"  Grid.Row="3" Grid.Column="1" />
+                            <Label x:Name="chitietgioden" Style="{StaticResource labelStyle}" Grid.Row="4" Grid.Column="1" />
+                            <Label x:Name="chitietgiove"  Style="{StaticResource labelStyle}" Grid.Row="5" Grid.Column="1" />
+
+                            <control:GradientButton  StartColor="#0cebeb"
+                                            EndColor="#20e3b2"
+                                            GradientOrientation="Horizontal"
+                                            Padding="10,0"
+                                                     HorizontalOptions="End"
+                                            TextColor="White" 
+                                            CornerRadius="5"  Text="Đóng" Grid.Row="6" Grid.Column="1" Clicked="close" />
                         </Grid>
+                        </StackLayout>
                     </Frame>
                 </StackLayout>
             </ContentView>

@@ -2,26 +2,66 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="clr-namespace:dieuxe.CustomControl"
              mc:Ignorable="d"
+            
+             Title="Lịch đã đăng ký" BackgroundColor="White"
              x:Class="dieuxe.Views.xemlichdadangky">
     <ContentPage.Content>
-        <StackLayout>
-            <!--<SearchBar TextChanged="SearchBar_TextChanged"></SearchBar>-->
-            <ListView ItemTapped="sualich_ItemTapped"  IsPullToRefreshEnabled="True" x:Name="sualich" ItemsSource="{Binding listLich}" HasUnevenRows="True">
-
+        <control:GradientStackLayout x:Name="content"
+              StartColor="#00C9FF"
+            EndColor="#92FE9D" 
+            Padding="10,10,10,10">
+            <ListView  IsPullToRefreshEnabled="True" x:Name="xemlich" ItemsSource="{Binding listLich}" SeparatorVisibility="None" HasUnevenRows="True">
+                <ListView.Behaviors>
+                    <control:DeselectItemBehavior />
+                </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="12,6">
-                                <Label Text="{Binding ngaydangky}" FontSize="24"/>
-                                <Label Text="{Binding noidi}" FontSize="24" Opacity="0.6"/>
-                                <Label Text="{Binding noiden}" />
+                            <!--SelectedItem="{Binding SelectItem } "-->
+                            <StackLayout Padding="10,5,10,10"   
+                         Orientation="Horizontal" 
+                         BackgroundColor="Transparent"  >
+                              
+                                <Frame CornerRadius="15">
+                                    <Grid  BackgroundColor="White" 
+                                           VerticalOptions="FillAndExpand" 
+                                           Padding="0" Margin="10,5,0,10"  >
+                                    <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"  />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.5*" />
+                                    <ColumnDefinition Width="2.5*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Ngày đăng kí" Style="{StaticResource labelStyle}" Grid.Column="0" Grid.Row="0"/>
+                                <Label Text="{Binding NgayDangKy}" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="0"/>
+                                <Label Text="Nơi đi" Style="{StaticResource labelStyle}" Grid.Column="0" Grid.Row="1"/>
+                                        <Label Text="{Binding NoiDi}"  Style="{StaticResource labelStyle}"  Grid.Column="1" Grid.Row="1"/>
+                                <Label Text="Nơi đến" Style="{StaticResource labelStyle}" Grid.Column="0" Grid.Row="2"/>
+                                        <Label Text="{Binding NoiDen}" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="2" />
+                                <control:GradientButton Text="sửa" VerticalOptions="Center" StartColor="#0cebeb" Margin="5"
+                                            EndColor="#20e3b2" 
+                                            TextColor="White" Padding="5"
+                                            BorderRadius="3" 
+                                            Grid.Column="2" Grid.Row="0" Clicked="sua_Clicked"  CommandParameter="{Binding .}"/>
+                                <control:GradientButton Text="xóa"  StartColor="#0cebeb" Margin="5"
+                                            EndColor="#20e3b2"
+                                            GradientOrientation="Horizontal"
+                                            TextColor="white" Padding="5" 
+                                            BorderRadius="3" VerticalOptions="Center" Grid.Column="2" Grid.Row="1" Clicked="xoa_Clicked" CommandParameter="{Binding .}"/>
+                            </Grid>
+                            </Frame>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+
+        </control:GradientStackLayout>
     </ContentPage.Content>
 </ContentPage>

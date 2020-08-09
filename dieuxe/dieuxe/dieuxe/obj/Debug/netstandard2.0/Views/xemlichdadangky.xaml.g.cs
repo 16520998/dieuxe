@@ -17,12 +17,16 @@ namespace dieuxe.Views {
     public partial class xemlichdadangky : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.ListView sualich;
+        private global::dieuxe.CustomControl.GradientStackLayout content;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.ListView xemlich;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(xemlichdadangky));
-            sualich = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "sualich");
+            content = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::dieuxe.CustomControl.GradientStackLayout>(this, "content");
+            xemlich = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "xemlich");
         }
     }
 }

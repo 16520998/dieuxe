@@ -1,5 +1,7 @@
 ﻿using dieuxe.Helpers;
+using dieuxe.Models;
 using dieuxe.Services;
+using dieuxe.ViewModels;
 using dieuxe.Views;
 using System;
 using System.Globalization;
@@ -10,8 +12,7 @@ namespace dieuxe
 {
     public partial class App : Application
     {
-        public static ILocationUpdateService LocationUpdateService;
-
+       
         public App()
         {
             CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
@@ -20,29 +21,31 @@ namespace dieuxe
             //LocationUpdateService.LocationChanged += LocationUpdateService_LocationChanged;
 
             InitializeComponent();
-            //SetMainPage();
-            //MainPage = new dieuxe.Views.Map();
-            //MainPage = new NavigationPage(new TaiXeView());
-
-            MainPage = new NavigationPage(new QuanLy());
+            SetMainPage();
+            //MainPage = new NavigationPage(new MainTabbedPage());
+            //{
+            //    BarBackgroundColor = Color.White
+            //};
+          
         }
 
-        private void SetMainPage()
+        private async  void SetMainPage()
         {
-            if (!string.IsNullOrEmpty(Settings.AccessToken))
-            {
-                MainPage = new NavigationPage(new MainPage());
+            if (string.IsNullOrEmpty(Settings.AccessToken)|| string.IsNullOrEmpty(Settings.LoailienHe))
+               // if (string.IsNullOrEmpty(Settings.AccessToken))
+                {
+                MainPage = new NavigationPage(new Login()); 
             }
-            else
-                MainPage = new NavigationPage(new Login());
+            else {
+                int loainv = Convert.ToInt32(Settings.LoailienHe);
+
+                MainPage = new NavigationPage(new MainTabbedPage(loainv));
+                
+            }
 
         }
 
-        private void LocationUpdateService_LocationChanged(object sender, ILocationEventArgs e)
-        {
-            //Here you can get the user's location from "e" -> new Location(e.Latitude, e.Longitude);
-            //new Location is from Xamarin.Essentials Location object.
-        }
+       
 
         protected override void OnStart()
         {
@@ -50,6 +53,7 @@ namespace dieuxe
 
         protected override void OnSleep()
         {
+
         }
 
         protected override void OnResume()

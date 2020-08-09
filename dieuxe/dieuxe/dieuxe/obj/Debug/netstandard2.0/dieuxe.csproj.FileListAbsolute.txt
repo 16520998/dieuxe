@@ -35,3 +35,35 @@ D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\XamlC.stamp
 D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\TaiXeView.xaml.g.cs
 D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\QuanLy.xaml.g.cs
 D:\Hoc tap\KLTN\source\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\BanDo.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\bin\Debug\netstandard2.0\dieuxe.deps.json
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\bin\Debug\netstandard2.0\dieuxe.dll
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\bin\Debug\netstandard2.0\Mono.Android.dll
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\bin\Debug\netstandard2.0\Mono.Android.pdb
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\bin\Debug\netstandard2.0\Mono.Android.xml
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\App.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\BanDo.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\ChangePWPage.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\dangkythongtin.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\DieuXepage.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\ForgotPwPage.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\getuser.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\Login.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\MainTabbedPage.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\profile.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\QuanLy.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\TaiXeView.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\xemlichdadangky.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\dieuxe.AssemblyInfoInputs.cache
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\dieuxe.AssemblyInfo.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\dieuxe.csproj.CopyComplete
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\dieuxe.csprojAssemblyReference.cache
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\bin\Debug\netstandard2.0\ref\dieuxe.dll
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\bin\Debug\netstandard2.0\dieuxe.pdb
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\dieuxe.dll
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\ref\dieuxe.dll
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\dieuxe.pdb
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\notifyPage.xaml.g.cs
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\dieuxe.csproj.CoreCompileInputs.cache
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\XamlC.stamp
+D:\hoctap\kltn\source\dieuxe\dieuxe\dieuxe\dieuxe\obj\Debug\netstandard2.0\Views\ThongkeView.xaml.g.cs

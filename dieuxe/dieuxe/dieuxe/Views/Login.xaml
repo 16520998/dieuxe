@@ -3,49 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:ViewModels1="clr-namespace:dieuxe.ViewModels"
+             xmlns:ViewModels="clr-namespace:dieuxe.ViewModels" xmlns:control="clr-namespace:dieuxe.CustomControl"
              mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
              x:Class="dieuxe.Views.Login">
-    <ContentPage.BindingContext>
-        <ViewModels1:Login_ViewModels/>
-    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
 
-        <ScrollView Padding="{OnPlatform Android='0,50'}">
-            <StackLayout>
-                <Label Text="Welcome to Our Shop"
+        <ScrollView Padding="{OnPlatform Android='0,0'}">
+           <StackLayout   Padding="10" 
+            >
+                <Label Text="PPJ app"
                FontAttributes="Bold"
                FontSize="46"
-               Margin="0,0,0,20"
-               HorizontalTextAlignment="Center" TextColor="{StaticResource DarkTextColor}"
-               />
-                <StackLayout Margin="40,50"
+               Margin="0,20,0,0"
+               HorizontalTextAlignment="Center" TextColor="Black" Opacity="0.7"               />
+                <Image Source="delivery" HeightRequest="200"  Margin="10,0,10,0"   />
+                <StackLayout Margin="40,0"
                  Spacing="10">
 
                     <Label Text="Login"
                FontAttributes="Bold"
                FontSize="30"
                Margin="0,0,0,20"
-               HorizontalTextAlignment="Center" TextColor="{StaticResource DarkTextColor}"
+               HorizontalTextAlignment="Center" TextColor="Black" Opacity="0.7"
                />
                     <Frame Padding="10,0"
-               CornerRadius="5">
-                        <Entry Placeholder="email" x:Name="email"
-                                  ReturnType="Next"
+               CornerRadius="20">
+
+                        <control:BorderlessEntry Placeholder="email"  x:Name="email"
+                                  ReturnType="Next" Style="{StaticResource EntryStyle}"
                                   Keyboard="Email" Text="{Binding email}"
-                   />
-                    </Frame>
+                   >
+                            <Entry.Behaviors>
+                                <control:EmailValidatorBehavior/>
+                            </Entry.Behaviors>
+                        </control:BorderlessEntry>
+                      
+                    </Frame> 
                     <Frame Padding="10,0"
-               CornerRadius="5">
-                        <Entry Placeholder="password" x:Name="password"
+               CornerRadius="20">
+                        <control:BorderlessEntry Placeholder="password"  x:Name="password"
                                   IsPassword="True" Text="{Binding password}"/>
                     </Frame>
-                    <Button Text="Login"
-                Padding="10,0"
-                CornerRadius="5" Style="{StaticResource DarkButtonStyle}" Command="{Binding LoginCommand}" />
+                    <control:GradientButton Text="Login" StartColor="#0cebeb"
+                                            EndColor="#20e3b2"
+                                            GradientOrientation="Horizontal"
+                                            Padding="10,0"
+                                            TextColor="White"
+                                            CornerRadius="5" 
+                                            Style="{StaticResource DarkButtonStyle}" 
+                                            Command="{Binding LoginCommand}" />
 
-                    <Label Text="Sign up for Pucharge"
-               Opacity="0.8"
+                    <Label Text="Quên mật khẩu"
+               Opacity="0.7" TextColor="Black"
+               VerticalOptions="End" 
+               FontSize="Small"
+               HorizontalTextAlignment="Center"
+               >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ForgotCommand}"/>
+                        </Label.GestureRecognizers>   
+                    </Label>
+                    <Label Text="Đăng nhập để đặt lịch"
+               Opacity="0.7" TextColor="Black"
                VerticalOptions="End"
                FontSize="Small"
                HorizontalTextAlignment="Center"

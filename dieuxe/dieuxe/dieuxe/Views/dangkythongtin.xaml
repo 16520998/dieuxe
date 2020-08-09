@@ -5,69 +5,205 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:control="clr-namespace:dieuxe.CustomControl" 
              mc:Ignorable="d"
-             x:Class="dieuxe.Views.dangkythongtin"
-             Title="Yêu cầu chuyến đi"
+             
+             x:Class="dieuxe.Views.dangkythongtin" 
+             Title="Yêu cầu chuyến đi" 
              Style="{StaticResource PageStyle}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Log Out"
-                         Command="{Binding LogoutCommand}" Clicked="Logout_Clicked"/>
-    </ContentPage.ToolbarItems>
-    <ContentPage.Content>
-        <StackLayout>
-            <StackLayout VerticalOptions="Start" Orientation="Horizontal" HorizontalOptions="End">
-                <Label x:Name="username" Text="Nhân viên" />
-                <Image Source="account.png" WidthRequest="20" HeightRequest="20"/>
-            </StackLayout>
-            <StackLayout VerticalOptions="CenterAndExpand">
-                <Label Text="Nơi đón"/>
-                <StackLayout Orientation="Horizontal">
-                    <Frame Style="{StaticResource FrameStyle}">
-                        <control:CustomEntry x:Name="noidon" Text="{Binding noidi}" Style="{StaticResource EntryStyle}"  WidthRequest="250" Placeholder="Đón tôi ở..." HorizontalOptions="Start" />
-                    </Frame>
-                    <Image Source="map.png" WidthRequest="30" HeightRequest="30" HorizontalOptions="EndAndExpand" Margin="0, 0, 20, 0">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-                <Label Text="Nơi đến" Margin="0, 5, 0, 0"/>
-                <StackLayout Orientation="Horizontal">
-                    <Frame Style="{StaticResource FrameStyle}">
-                        <control:CustomEntry x:Name="noiden" Text="{Binding noiden}" Style="{StaticResource EntryStyle}"  WidthRequest="250" Placeholder="Muốn đến..." HorizontalOptions="Start" />
-                    </Frame>
-                    <Image Source="map.png" WidthRequest="30" HeightRequest="30" HorizontalOptions="EndAndExpand" Margin="0, 0, 20, 0">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-                <Label Text="Muốn đến nơi lúc" Margin="0, 5, 0, 0"/>
-                <StackLayout Orientation="Horizontal">
-                    <Frame Style="{StaticResource FrameStyle}" HorizontalOptions="Start">
-                        <control:CustomDatePicker x:Name="ngayden" Date="{Binding gioden }"  Format="D" WidthRequest="180" Style="{StaticResource DatePickerStyle}"/>
-                    </Frame>
-                    <Frame Style="{StaticResource FrameStyle}" HorizontalOptions="EndAndExpand">
-                        <control:CustomTimePicker x:Name="gioden" Time="06:00:00" Format="T" WidthRequest="120" Style="{StaticResource TimePickerStyle}"/>
-                    </Frame>
-                </StackLayout>
-                <Label Text="Thời gian về" Margin="0, 5, 0, 0"/>
-                <StackLayout Orientation="Horizontal">
-                    <Frame Style="{StaticResource FrameStyle}" HorizontalOptions="Start">
-                        <control:CustomDatePicker x:Name="ngayve" Date="{Binding giove }"  Format="D" WidthRequest="180" Style="{StaticResource DatePickerStyle}"/>
-                    </Frame>
-                    <Frame Style="{StaticResource FrameStyle}" HorizontalOptions="EndAndExpand">
-                        <control:CustomTimePicker x:Name="giove"  Time="06:00:00" Format="T" WidthRequest="120" Style="{StaticResource TimePickerStyle}"/>
-                    </Frame>
-                </StackLayout>
-                <Label Text="Số người đi" Margin="0, 5, 0, 0"/>
-                <Frame Style="{StaticResource FrameStyle}">
-                    <control:CustomEntry x:Name="songuoi" Text="{Binding songuoi}" Keyboard="Numeric" Style="{StaticResource EntryStyle}" Placeholder="Số người đi..." WidthRequest="100" />
+    <ScrollView>
+    <StackLayout x:Name="content" BackgroundColor="White" 
+                                  Margin="0"   
+        >
+       
+            <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"  NumberOfTapsRequired="1"/>
+        </StackLayout.GestureRecognizers>
+    
+        <AbsoluteLayout Margin="0,50,0,0" HeightRequest="800">
+            
+                <Label TextColor="Black" Opacity="0.7"  Text="Tên người đi" AbsoluteLayout.LayoutBounds="20,20,0.65,0.04" AbsoluteLayout.LayoutFlags="SizeProportional" />
+            <Frame  AbsoluteLayout.LayoutBounds="20,55,0.6,0.06"
+                   AbsoluteLayout.LayoutFlags="SizeProportional" 
+                           Style="{StaticResource FrameStyle}" >
+                <control:BorderlessEntry x:Name="tennguoidi" 
+                                                     Text="{Binding TenNguoiDi}"  
+                                                     Style="{StaticResource EntryStyle}"  
+                                                     WidthRequest="270"  Placeholder="Nhập tên người đi..." 
+                                                     HorizontalOptions="Start" 
+                                                      />
+            </Frame>
+            <Label Text="Số người đi" 
+                   AbsoluteLayout.LayoutBounds="2,0.026,0.65,0.04" 
+                   AbsoluteLayout.LayoutFlags="All"  
+                   TextColor="Black" Opacity="0.7" />
+            <Frame  AbsoluteLayout.LayoutBounds="0.91,0.073,0.2,0.06"
+                   AbsoluteLayout.LayoutFlags="All"  
+                    Style="{StaticResource FrameStyle}">
+                <control:BorderlessEntry x:Name="songuoi" 
+                                         Text="{Binding SoNguoi}" 
+                                         Keyboard="Numeric" Style="{StaticResource EntryStyle}" 
+                                         Placeholder="Số người đi..." WidthRequest="100" />
+            </Frame>
+            <Label Text="Nơi đi" 
+                   AbsoluteLayout.LayoutBounds="20,115,0.65,0.04" AbsoluteLayout.LayoutFlags="SizeProportional"
+                   TextColor="Black" Opacity="0.7"/>
+            <Frame  AbsoluteLayout.LayoutBounds="20,140,0.6,0.06"
+                   AbsoluteLayout.LayoutFlags="SizeProportional" 
+                           Style="{StaticResource FrameStyle}" >
+                <control:BorderlessEntry x:Name="noidi"
+                                                     Text="{Binding NoiDi}"  
+                                                     Style="{StaticResource EntryStyle}"  
+                                                     WidthRequest="270"  Placeholder="Đón tôi ở..." 
+                                                     HorizontalOptions="Start" 
+                                                     TextChanged="noidi_TextChanged"  
+                                                      />          
+            </Frame>
+                <!--<control:GradientButton Text="Chọn"  StartColor="#4CB8C4"
+                                    EndColor="#3CD3AD"
+                                    GradientOrientation="Horizontal" 
+                                    TextColor="White" x:Name="mapdi"  Clicked="mapdi_Clicked"
+                                    BorderRadius="3"  AbsoluteLayout.LayoutBounds="310,120,0.2,0.06"
+                   AbsoluteLayout.LayoutFlags="SizeProportional"  />-->
+                <ImageButton x:Name="mapdi"  Clicked="mapdi_Clicked" Padding="5" Source="maping.png" BackgroundColor="Transparent" CornerRadius="10"  AbsoluteLayout.LayoutBounds="0.91,140,0.2,0.06"
+                   AbsoluteLayout.LayoutFlags="XProportional,SizeProportional"  />
+
+        <!--entry cách label noi den la 50-->
+        
+            <Label Text="Nơi đến" 
+                   AbsoluteLayout.LayoutBounds="20,200,0.65,0.04" AbsoluteLayout.LayoutFlags="SizeProportional"
+                   TextColor="Black" Opacity="0.7"/>
+                
+        <!--label cách entry là 25-->
+        
+            <Frame  AbsoluteLayout.LayoutBounds="20,225,0.6,0.06"
+                   AbsoluteLayout.LayoutFlags="SizeProportional" 
+                           Style="{StaticResource FrameStyle}" >
+                <control:BorderlessEntry   x:Name="noiden" 
+                                                      Text="{Binding NoiDen}" 
+                                                     Style="{StaticResource EntryStyle}"  
+                                                     WidthRequest="270"  Placeholder="Tôi muốn đến..." 
+                                                     HorizontalOptions="Start" 
+                                                     TextChanged="noiden_TextChanged" 
+                                                      />
+            </Frame>
+            <!--<control:GradientButton Text="Chọn" x:Name="mapden"  StartColor="#4CB8C4"
+                                    EndColor="#3CD3AD"
+                                    GradientOrientation="Horizontal" 
+                                    TextColor="White" Clicked="mapden_Clicked"
+                                    BorderRadius="3"  AbsoluteLayout.LayoutBounds="310,195,0.2,0.06"
+                   AbsoluteLayout.LayoutFlags="SizeProportional"  />-->
+            <ImageButton x:Name="mapden" Source="maping.png" Padding="5" BackgroundColor="Transparent"  Clicked="mapden_Clicked" 
+                                    CornerRadius="10"  AbsoluteLayout.LayoutBounds="0.91,225,0.2,0.06"
+                   AbsoluteLayout.LayoutFlags="XProportional,SizeProportional" />
+            <!--button cach label la 50
+        list view với button cách nhau 230-195=35-->
+        
+           
+
+            <Label Text="Muốn đến nơi lúc" 
+                   AbsoluteLayout.LayoutBounds="20,285,0.65,0.04" AbsoluteLayout.LayoutFlags="SizeProportional"
+                   TextColor="Black" Opacity="0.7"/>
+            <Frame Style="{StaticResource FrameStyle}" 
+                   AbsoluteLayout.LayoutBounds="20,310,0.6,0.06"
+                   AbsoluteLayout.LayoutFlags="SizeProportional"  
+                   >
+            <control:CustomDatePicker x:Name="ngayden"  Date="{Binding ThoiGianDen }"  Format="D" WidthRequest="180" Style="{StaticResource DatePickerStyle}"/>
+            </Frame>
+            <Frame Style="{StaticResource FrameStyle}" 
+                   AbsoluteLayout.LayoutBounds="0.91,310,0.2,0.06"
+                   AbsoluteLayout.LayoutFlags="XProportional,SizeProportional"
+                   HorizontalOptions="EndAndExpand">
+                <control:CustomTimePicker x:Name="gioden" Time="{Binding GioDen}" Format="T" WidthRequest="120" Style="{StaticResource TimePickerStyle}"/>
+            </Frame>
+
+            <Label Text="Muốn Về lúc" 
+                   AbsoluteLayout.LayoutBounds="20,370,0.65,0.04" 
+                   AbsoluteLayout.LayoutFlags="SizeProportional" 
+                   TextColor="Black" Opacity="0.7" />
+
+            <Frame  AbsoluteLayout.LayoutBounds="20,395,0.6,0.06"
+                   AbsoluteLayout.LayoutFlags="SizeProportional"   
+                    Style="{StaticResource FrameStyle}" 
+                    >
+                    <control:CustomDatePicker x:Name="ngayve" Date="{Binding ThoiGianVe }"  Format="D" WidthRequest="180" Style="{StaticResource DatePickerStyle}"/>
                 </Frame>
-                <Button Text="Đăng ký chơi" Clicked= "dangky" BorderRadius="6" Margin="90, 30, 90, 0"/>
-                <Button Text="Đăng ký thật" Command="{Binding dangkylichCommand}" BorderRadius="6" Margin="90, 30, 90, 0"/>
+            <Frame AbsoluteLayout.LayoutBounds="0.91,395,0.2,0.06"
+                   AbsoluteLayout.LayoutFlags="XProportional,SizeProportional"
+                   Style="{StaticResource FrameStyle}" HorizontalOptions="EndAndExpand">
+                    <control:CustomTimePicker x:Name="giove"  Time="{Binding GioVe }" Format="T" WidthRequest="120" Style="{StaticResource TimePickerStyle}"/>
+                </Frame>
+            <Label Text="Số điện thoại" 
+                   AbsoluteLayout.LayoutBounds="20,460,0.65,0.05" 
+                   AbsoluteLayout.LayoutFlags="SizeProportional"  
+                   TextColor="Black" Opacity="0.7" />
+            <Frame  AbsoluteLayout.LayoutBounds="20,485,0.6,0.06"
+                   AbsoluteLayout.LayoutFlags="SizeProportional"  
+                    Style="{StaticResource FrameStyle}">
+                <control:BorderlessEntry x:Name="sdt" 
+                                         Text="{Binding SdtLienLac}" 
+                                         Keyboard="Telephone" Style="{StaticResource EntryStyle}" 
+                                         Placeholder="Nhập sdt..." WidthRequest="100" >
+                    <Entry.Behaviors>
+                        <control:MaxLengthValidatorBehavior  MaxLength="10"/>
+                        <control:NumberValidationBehavior />
+                    </Entry.Behaviors>
+                </control:BorderlessEntry>
+               
+            </Frame>
+            <Frame  AbsoluteLayout.LayoutBounds="20,190,0.6,0.4" BorderColor="red"
+                   AbsoluteLayout.LayoutFlags="SizeProportional" IsVisible="False" x:Name="listdi"
+                           Style="{StaticResource FrameStyle}" >
+                <ListView x:Name="listkq" ItemsSource="{Binding Addressesdi}" HasUnevenRows="true" IsVisible="True" ItemTapped="listkq_ItemTapped" BackgroundColor="White">
 
-            </StackLayout>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                                <TextCell Text="{Binding Address}" TextColor="DarkViolet"/>
+                            </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+            <Frame  AbsoluteLayout.LayoutBounds="20,275,0.6,0.4"
+                   AbsoluteLayout.LayoutFlags="SizeProportional" IsVisible="False" x:Name="listden"
+                           Style="{StaticResource FrameStyle}" >
+                <ListView x:Name="listkq1" ItemsSource="{Binding Addressesdden}" IsVisible="True" ItemTapped="listkq1_ItemTapped" BackgroundColor="White">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                                <TextCell Text="{Binding Address}" TextColor="DarkViolet"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+                <Label Text="Ghi chú" 
+                   AbsoluteLayout.LayoutBounds="0.15,0.72,0.65,0.04" 
+                   AbsoluteLayout.LayoutFlags="All" 
+                   TextColor="Black" Opacity="0.7" />
 
-        </StackLayout>
-    </ContentPage.Content>
+                <Frame  AbsoluteLayout.LayoutBounds="0.5,0.85,0.9,0.15"
+                   AbsoluteLayout.LayoutFlags="All"   HeightRequest="20"
+                    Style="{StaticResource FrameStyle}" 
+                    >
+                    <control:BorderlessEntry x:Name="ghichu" 
+                                             Style="{StaticResource EntryStyle}" 
+                                             WidthRequest="270" HeightRequest="50" VerticalOptions="Start" Placeholder="Ghi chú..." 
+                                             HorizontalOptions="Start"  Text="{Binding Ghichu}"/>
+                </Frame>
+
+                <control:GradientButton StartColor="#4CB8C4"
+                                    EndColor="#3CD3AD"
+                                    GradientOrientation="Horizontal" 
+                                    x:Name="dk" AbsoluteLayout.LayoutBounds="0.5,0.97,0.35,0.08" 
+                   AbsoluteLayout.LayoutFlags="All"   
+                    Text="Đăng ký"  IsVisible="True" 
+                    Command="{Binding dangkylichCommand}" 
+                    BorderRadius="6" />
+            <control:GradientButton StartColor="#4CB8C4"
+                                    EndColor="#3CD3AD"
+                                    GradientOrientation="Horizontal" 
+                                    x:Name="sua" AbsoluteLayout.LayoutBounds="0.5,0.97,0.35,0.08" 
+                   AbsoluteLayout.LayoutFlags="All"    Text="Sửa"  IsVisible="False" Clicked="sua_Clicked" CommandParameter="{Binding .}" BorderRadius="6" />
+                <!--Command="{Binding SuaCommand}"-->
+            </AbsoluteLayout>
+    
+    </StackLayout>
+    </ScrollView>
+
 </ContentPage>

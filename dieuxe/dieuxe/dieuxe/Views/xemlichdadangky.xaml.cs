@@ -8,30 +8,61 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Diagnostics;
+using dieuxe.Helpers;
 
 namespace dieuxe.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class xemlichdadangky : ContentPage
     {
+        xemlichdadangkyViemodel xl;
         public xemlichdadangky()
         {
             InitializeComponent();
-            this.BindingContext = new xemlichdadangkyViemodel();
+            xl = new xemlichdadangkyViemodel();
+            BindingContext = xl;
+            
         }
-        //public xemlichdadangky(lich lich)
-        //{
-        //    var xemlichviewmodel = new xemlichdadangkyViemodel();
-        //    xemlichviewmodel.Lich = lich;
-        //    BindingContext = xemlichviewmodel;
-        //    InitializeComponent();
-        //    //this.BindingContext = new xemlichdadangkyViemodel();
-        //}
 
-        private async void sualich_ItemTapped(object sender, ItemTappedEventArgs e)
+
+
+        private async  void xoa_Clicked(object sender, EventArgs e)
         {
-            var lich = e.Item as lich;
-            await Navigation.PushAsync(new Editlich(lich));
+            var button = sender as Button;
+            var lich = button.BindingContext as DangKyLichChiTiet;
+            
+            xl.deleteCommand.Execute(lich);
+           
         }
+
+        private async void sua_Clicked(object sender, EventArgs e)
+        {
+            
+            var button = sender as Button;
+            var lich = button.BindingContext as DangKyLichChiTiet;
+            await Navigation.PushAsync(new dangkythongtin(lich));
+        }
+
+        private void submit_Clicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var lich = button.CommandParameter as List<DangKyLichChiTiet>;
+            var vm = BindingContext as xemlichdadangkyViemodel;
+            vm.PostCommand.Execute(lich);
+
+            
+            //if (selectedItem != null)
+            //{
+            //    Debug.WriteLine("name:>." + selectedItem.SelectItem);
+            //}
+            foreach (lich i in xemlich.ItemsSource)
+            {
+                Debug.WriteLine(i.SelectItem==null?"null": "giá trị " + i.SelectItem.TenLienHe);
+            }
+
+        }
+
+       
     }
 }

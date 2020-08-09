@@ -1,9 +1,11 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
 using UIKit;
+using UserNotifications;
 
 namespace dieuxe.iOS
 {
@@ -23,6 +25,11 @@ namespace dieuxe.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            //notifycation
+            UNUserNotificationCenter.Current.Delegate = new iOSNotificationReceiver();
+
+            //
             Xamarin.FormsMaps.Init();
             LoadApplication(new App());
 

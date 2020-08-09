@@ -33,7 +33,7 @@ namespace dieuxe.Models
     //}
     public class Polyline
     {
-        public string point { get; set; }
+        public string points { get; set; }
     }
     public class Step
     {

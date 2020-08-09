@@ -4,29 +4,64 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
              x:Class="dieuxe.Views.getuser">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Log Out"
-                         Command="{Binding LogoutCommand}" Clicked="Logout_Clicked"/>
-    </ContentPage.ToolbarItems>
+   
     <ContentPage.Content>
-        <StackLayout>
-
-            <ListView   IsPullToRefreshEnabled="True" x:Name="userlistview" ItemsSource="{Binding User}" HasUnevenRows="True">
-
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="12,6">
-                                <Label Text="demo" FontSize="24"/>
-                                <Label Text="{Binding  User.tennv}" FontSize="24"/>
-                                <Label Text="{Binding  User.manv}" FontSize="24"/>
-                                <Label Text="{Binding  User.PhoneNumber}" FontSize="24"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <StackLayout Margin="25,100,25,0">
+            <Label Text="Menu" Opacity="0.7" TextColor="Black" FontSize="30"/>
+            <Frame CornerRadius="10" Margin="0,10,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Trang cá nhân" Clicked="profile_Clicked" FontSize="18" HorizontalOptions="Start"  TextColor="Black" Opacity="0.7"  BackgroundColor="Transparent"  Grid.Column="1" Grid.Row="0" />
+                    <Image Source="canhan.png" HorizontalOptions="Center" Margin="7.5" BackgroundColor="Transparent"  Grid.Column="0" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            <Frame CornerRadius="10" Margin="0,10,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Xem lịch đã đăng kí" Clicked="xemlichdangky_Clicked" FontSize="18" HorizontalOptions="Start"  TextColor="Black" Opacity="0.7"  BackgroundColor="Transparent"  Grid.Column="1" Grid.Row="0" />
+                    <Image Source="checklist.png" HorizontalOptions="Center" BackgroundColor="Transparent"  Grid.Column="0" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            <Frame  CornerRadius="10" Margin="0,10,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="doimk"  Text="Đổi mật khẩu" Clicked="doimk_Clicked" FontSize="18" HorizontalOptions="Start"  TextColor="Black" Opacity="0.7"  BackgroundColor="Transparent"  Grid.Column="1" Grid.Row="0" />
+                    <Image Source="key.png"  HorizontalOptions="Center"  BackgroundColor="Transparent"  Grid.Column="0" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            <Frame  CornerRadius="10" Margin="0,10,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Đăng xuất" Clicked="dangxuat_Clicked" FontSize="18" HorizontalOptions="Start"  TextColor="Black" Opacity="0.7"  BackgroundColor="Transparent"  Grid.Column="1" Grid.Row="0" />
+                    <Image Source="logout.png"  HorizontalOptions="Center" BackgroundColor="Transparent"  Grid.Column="0" Grid.Row="0" />
+                </Grid>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
